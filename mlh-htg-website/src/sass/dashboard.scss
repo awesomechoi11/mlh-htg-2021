@@ -69,40 +69,51 @@ $right-width: 540px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    #backgroundOffset{
+    #backgroundOffset {
         width: 430px;
         height: 177.5px;
-        border: 2px solid $darkgreen;
+        border: none;
         border-radius: 11px;
         background-color: $offwhite;
+        top: 7px;
+        left: 7px;
+        position: absolute;
     }
-    p{
+    p {
         color: $maroon;
         padding: 0;
         margin: 7px;
     }
-    #userInfo{
-        background-color: $lightoffwhite;
+    #userInfo {
+        position: relative;
     }
-    #header{
+    .userInfo-inner {
+        width: 430px;
+        height: 177.5px;
+        border: 2px solid $darkgreen;
+        border-radius: 11px;
+        position: relative;
+        z-index: 2;
+    }
+    #header {
         font-size: 24px;
         font-weight: bold;
         position: relative;
         left: 5%;
         padding-top: 2%;
     }
-    #picAndAddress{
+    #picAndAddress {
         display: flex;
         flex-direction: row;
     }
-    #headerPic{
+    #headerPic {
         width: 103.75px;
         height: 103.75px;
         border-radius: 11px;
         position: relative;
         left: 4%;
     }
-    #address{
+    #address {
         position: relative;
         left: 3%;
         padding-top: 2%;
