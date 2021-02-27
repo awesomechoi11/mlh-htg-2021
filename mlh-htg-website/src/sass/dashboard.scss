@@ -70,7 +70,7 @@ $right-width: 540px;
     flex-direction: column;
     align-items: center;
 
-    #myProfile{
+    #myProfile {
         font-weight: bold;
         font-size: 24px;
         position: relative;
@@ -126,7 +126,7 @@ $right-width: 540px;
         padding-top: 2%;
         font-size: 18px;
     }
-    #pickUpAndSort{
+    #pickUpAndSort {
         display: flex;
         flex-direction: row;
         padding-bottom: 5%;
@@ -134,17 +134,17 @@ $right-width: 540px;
         align-items: center;
         justify-content: space-between;
     }
-    #sortAndArrow{
+    #sortAndArrow {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
-    #pickUpHeader{
+    #pickUpHeader {
         font-weight: bold;
         font-size: 24px;
         position: relative;
     }
-    #sortHeader{
+    #sortHeader {
         font-weight: bold;
         font-size: 18px;
     }
@@ -161,30 +161,30 @@ $right-width: 540px;
         display: flex;
         flex-direction: column;
     }
-    .scheduleList{
+    .scheduleList {
         display: flex;
         flex-direction: column;
         position: relative;
         left: 5%;
         top: 7%;
     }
-    .circleAndScheduleTime{
+    .circleAndScheduleTime {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 15px;
     }
-    .circle{
-        border:3px solid $maroon;
-        border-radius:50%;
+    .circle {
+        border: 3px solid $maroon;
+        border-radius: 50%;
         background: $offwhite;
-        color:white;
-        width:20px;
-        height:20px;
-        text-align:center;
-        line-height:100px;
+        color: white;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 100px;
     }
-    .scheduleTime{
+    .scheduleTime {
         font-size: 18px;
     }
 
@@ -407,8 +407,8 @@ $right-width: 540px;
     }
 }
 
-.profileHeader{
-    width: 100%;
+.profileHeader {
+    width: 80%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -418,31 +418,31 @@ $right-width: 540px;
     p {
         color: $maroon;
     }
-    .icons{
+    .icons {
         display: flex;
         flex-direction: row;
         gap: 20px;
     }
-    .nameAndPic{
+    .nameAndPic {
         display: flex;
         flex-direction: row;
         align-items: center;
     }
-    .name{
+    .name {
         font-size: 24px;
         font-weight: bold;
     }
-    .pic{
+    .pic {
         height: 55px;
         border-radius: 50%;
     }
 }
 
-.foodForThought{
+.foodForThought {
     position: absolute;
     bottom: 5%;
     right: 3%;
     font-size: 27px;
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #51251D;
+    -webkit-text-stroke-color: #51251d;
 }

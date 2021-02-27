@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import Connections from '../dashboard/Connections'
 
 
+
 export const homeRight = (
     <div className='right-home'>
         <p id="myProfile">my profile</p>

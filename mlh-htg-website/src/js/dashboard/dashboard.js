@@ -1,9 +1,9 @@
-import '../../sass/dashboard.scss'
 import Connections from '../dashboard/Connections'
 import {
     Switch,
     Route,
 } from "react-router-dom";
+import '../../sass/dashboard.scss'
 
 import ProfileHeader from './ProfileHeader'
 import FoodForThought from './FoodForThought'
