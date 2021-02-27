@@ -8,7 +8,7 @@ export default function Connections() {
     const [nonProfits, setNonProfits] = useState()
     const [photo, setPhoto] = useState()
     const [schedules, setSchedules] = useState([])
-    console.log(schedules)
+    
     function schedule(newSchedule){
         setSchedules(schedules => [...schedules, newSchedule])
     }
@@ -16,7 +16,14 @@ export default function Connections() {
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
         nonprofits.get().then(snapshot => {
-            setNonProfits(snapshot.docs.map(doc => doc.data()))
+            var phoneNumber = faker.phone.phoneNumberFormat(0)
+            var email = faker.internet.email()
+            var time = faker.date.between('2021-02-29', '2021-03-20').toLocaleString(navigator.language, {hour: '2-digit', minute:'2-digit'})
+            .replace(/(:\d{2})$/, "")
+            var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
+            date = date.split(", ")
+            date = date[0]
+            setNonProfits(snapshot.docs.map(doc => ({time, date, email, phoneNumber, ...doc.data()})))
         })
         // getPhotoUrl().then(url => {
         //     setPhoto(url.response[0].urls.raw)
@@ -31,7 +38,7 @@ export default function Connections() {
             </p>
             <PerfectScrollbar>
                 <div id="connectPanelWrapper">
-                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} name={org.name} photo={photo} schedule = {schedule} address = {org.address}/>)}
+                    {nonProfits && nonProfits.map(org => <ConnectPanel key = {org.webURL} {...org} schedule = {schedule}/>)}
                 </div>
             </PerfectScrollbar>
         </div>
@@ -40,27 +47,26 @@ export default function Connections() {
 }
 
 function ConnectPanel(props) {
-    var phoneNumber = faker.phone.phoneNumberFormat(0)
-    var email = faker.internet.email()
-    var time = faker.date.between('2021-02-29', '2021-03-20').toLocaleString(navigator.language, {hour: '2-digit', minute:'2-digit'})
-    .replace(/(:\d{2})$/, "")
-    var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
-    date = date.split(", ")
-    date = date[0]
+    const [scheduled, setScheduled] = useState(false)
+
+    function schedule(){
+        props.schedule({name: props.name, time: props.time, date: props.date, address: props.address})
+        setScheduled(true)
+    }
 
     return(
         <div className = "nonProfitPanel">
             <img className = "nonProfitPhoto" src = { props.photo } alt = "profile pic"/> 
             <div className = "nonProfitInfo">
                 <p>{ props.name }</p>
-                <p>{ phoneNumber }</p>
-                <p>PICKUP AVAILABLE: { "\xa0" + time + "\xa0\xa0" + date}</p>
+                <p>{ props.phoneNumber }</p>
+                <p>PICKUP AVAILABLE: { "\xa0" + props.time + "\xa0\xa0" + props.date}</p>
             </div>
 
             <div className="nonProfitStatus">
-                <p>STATUS: ACCEPTING</p>
+                {!scheduled ? <p>STATUS: ACCEPTING</p> : <p>STATUS: SCHEDULED</p>}
                 <p>GOTO PROFILE</p>
-                <button onClick = {() => props.schedule({name: props.name, time: time, date: date, address: props.address})}>Schedule</button>
+                {!scheduled && <button onClick = {schedule}>Schedule</button>}
             </div>
         </div>
     )
