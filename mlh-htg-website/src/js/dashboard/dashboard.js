@@ -13,6 +13,7 @@ import restaurantLogo from '../../assets/logos/restaurantLogo.png'
 import ProfileHeader from './ProfileHeader'
 import FoodForThought from './FoodForThought'
 import { leafonly, homesvg, facesvg, thumbsupsvg, coffeesvg, door, cog, homeavatar, downArrow } from '../../assets/svgs/svg'
+import { useState } from 'react/cjs/react.development';
 
 export default function Dashboard() {
 
@@ -41,7 +42,7 @@ export default function Dashboard() {
 
 const routes = [
     {
-        to: '/connections',
+        to: '/dashboard/connections/:id',
         component: <Connections />,
         right: <DashboardHomeRight />
     },
@@ -182,12 +183,14 @@ function DashboardHomeRight() {
 }
 
 function DashboardHome() {
+
+
     return (
         <div className='d-home-wrapper'>
             <DashboardSearch />
             <DashboardWelcome />
             <DHomeStats />
-            <Connections />
+            <Connections/>
         </div>
     )
 }

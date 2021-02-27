@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import { getPhotoUrl } from '../../utils/utils'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import faker from 'faker'
+import { useHistory } from 'react-router-dom'
 
-export default function Connections() {
+export default function Connections(props) {
     const [nonProfits, setNonProfits] = useState()
     const [photo, setPhoto] = useState()
     const [schedules, setSchedules] = useState([])
@@ -24,7 +25,7 @@ export default function Connections() {
             date = date.split(", ")
             date = faker.date.past().toDateString()
             console.log(faker)
-            setNonProfits(snapshot.docs.map(doc => ({ time, date, email, phoneNumber, ...doc.data() })))
+            setNonProfits(snapshot.docs.map(doc => ({ id: doc.id, time, date, email, phoneNumber, ...doc.data() })))
         })
         // getPhotoUrl().then(url => {
         //     setPhoto(url.response[0].urls.raw)
@@ -39,7 +40,7 @@ export default function Connections() {
             </p>
             <PerfectScrollbar>
                 <div id="connectPanelWrapper">
-                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} {...org} schedule={schedule} />)}
+                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} {...org} schedule={schedule} showProfile = {props.showProfile}/>)}
                 </div>
             </PerfectScrollbar>
         </div>
@@ -56,10 +57,13 @@ function ConnectPanel(props) {
         'closed'
     ]
     const currstatus = status[Math.floor(Math.random() * Math.floor(3))]
+
     function schedule() {
         props.schedule({ name: props.name, time: props.time, date: props.date, address: props.address })
         setScheduled(true)
     }
+
+    let history = useHistory()
 
     return (
         <div className="nonProfitPanel card-item dashboard-card">
@@ -75,7 +79,7 @@ function ConnectPanel(props) {
                 <div className={'status-pill ' + currstatus}>
                     {currstatus}
                 </div>
-                <div className='view-btn'>
+                <div className='view-btn' onClick = {e => {history.push('dashboard/connections/' + props.id)}}>
                     view organization profile {' '}
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.39526 8.5H15.3953" stroke="#EAE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
