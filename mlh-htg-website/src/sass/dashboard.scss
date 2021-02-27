@@ -1,0 +1,68 @@
+.dashboard-page{
+    height: 100%;
+    position: absolute;
+    right: 0;
+    width: calc(100% - 320px);
+}
+
+#nonProfitConnections{
+    background-color: #C4C4C4;
+    border-radius: 10px;
+    width: 895px;
+    height: 593px;
+    position: relative;
+    top: 10%;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+#nonProfitConnectionTitle{
+    position: relative;
+    width: 91%;
+    top: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+  
+#connectPanelWrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    gap: 35px;
+}
+  
+.nonProfitPanel{
+    background-color: #9A9A9A;
+    width: 820px;
+    height: 147px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+  
+.nonProfitPhoto{
+    width: 124px;
+    height: 124px;
+    margin: 0;
+    background-color: white;
+    margin-left: 15px;
+    border-radius: 10px;
+}
+  
+.nonProfitInfo{
+    position: relative;
+    left: 6%;
+    height: 90%;
+}
+  
+.nonProfitStatus{
+    position: absolute;
+    right: 7%;
+    text-align: end;
+}

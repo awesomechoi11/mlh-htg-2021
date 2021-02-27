@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import './App.scss'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import Dashboard from './js/dashboard/dashboard'
 import Search from './js/search/search'
@@ -78,8 +79,8 @@ const routes = [
     to: '/dashboard',
     children: <div className='nav-account'>ACCOUNT</div>,
     component: <Dashboard />,
-    navbar: false
-  }, {
+    navbar: true
+  }, {  
     to: '/search',
     children: <div className='nav-search'>SEARCH</div>,
     component: <Search />,
