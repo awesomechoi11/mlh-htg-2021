@@ -10,7 +10,9 @@ import {
 import { useForm } from "react-hook-form";
 
 import restaurantLogo from '../../assets/logos/restaurantLogo.png'
-import { leafonly, homesvg, facesvg, thumbsupsvg, coffeesvg, door, cog, homeavatar } from '../../assets/svgs/svg'
+import ProfileHeader from './ProfileHeader'
+import FoodForThought from './FoodForThought'
+import { leafonly, homesvg, facesvg, thumbsupsvg, coffeesvg, door, cog, homeavatar, downArrow } from '../../assets/svgs/svg'
 
 export default function Dashboard() {
 
@@ -136,6 +138,9 @@ function Sidebar() {
 function DashboardHomeRight() {
     return (
         <div >
+            <ProfileHeader/>
+            <p id = "myProfile">my profile</p>
+
             <div id="userInfo">
                 <div className='userInfo-inner'>
 
@@ -152,6 +157,26 @@ function DashboardHomeRight() {
                 <div id="backgroundOffset">
                 </div>
             </div>
+            <div id = "pickUpAndSort">
+                <p id = "pickUpHeader">scheduled pickups</p>
+                <div id = "sortAndArrow">
+                    <p id = "sortHeader">SORT BY</p>
+                    {downArrow}
+                </div>
+            </div>
+            <div id="scheduledPickups">
+                <div className='scheduledPickups-inner'>
+                    <div className = "scheduleList">
+                        <div className = "circleAndScheduleTime">
+                            <div className = "circle"></div>
+                            <p className = "scheduleTime">ORGANIZATION A - 9:30AM</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="pickupsBackgroundOffset">
+                </div>
+            </div>
+            <FoodForThought/>
         </div>
     )
 }
