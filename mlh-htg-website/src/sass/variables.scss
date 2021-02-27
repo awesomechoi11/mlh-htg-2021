@@ -7,6 +7,14 @@
     --darkbrown: #433d43;
 
     --lato: "Lato", sans-serif;
+
+    --darkgreen: #706d51;
+    --lightgreen: #7f7d65;
+    --offwhite: #eae9df;
+    --lightgrey: #889593;
+    --lightmaroon: #a0624b;
+    --darkturqoise: #2f443e;
+    --maroon: #562817;
 }
 //then call css variables as css variables
 $white: var(--white);
@@ -14,6 +22,14 @@ $gray: var(--gray);
 $gold: var(--gold);
 $brown: var(--brown);
 $darkbrown: var(--darkbrown);
+
+$darkgreen: var(--darkgreen);
+$lightgreen: var(--lightgreen);
+$offwhite: var(--offwhite);
+$lightgrey: var(--lightgrey);
+$lightmaroon: var(--lightmaroon);
+$darkturqoise: var(--darkturqoise);
+$maroon: var(--maroon);
 
 $font-lato: var(--lato);
 

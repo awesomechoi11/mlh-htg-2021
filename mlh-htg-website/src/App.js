@@ -79,7 +79,7 @@ const routes = [
     to: '/dashboard',
     children: <div className='nav-account'>ACCOUNT</div>,
     component: <Dashboard />,
-    navbar: true
+    navbar: false
   }, {
     to: '/search',
     children: <div className='nav-search'>SEARCH</div>,

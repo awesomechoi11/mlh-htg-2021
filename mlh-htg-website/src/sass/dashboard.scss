@@ -1,12 +1,28 @@
-.dashboard-page{
-    height: 100%;
-    position: absolute;
-    right: 0;
-    width: calc(100% - 320px);
+@import "./variables.scss";
+.dashboard-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background: $lightgreen;
+    > * {
+        height: 100%;
+    }
 }
 
-#nonProfitConnections{
-    background-color: #C4C4C4;
+$sidebar-width: 320px;
+
+.dashboard-sidebar {
+    width: $sidebar-width;
+}
+
+.dashboard-content {
+    width: calc(100vw - #{$sidebar-width});
+    background: $offwhite;
+    border-radius: 30px 0 0 30px;
+}
+
+#nonProfitConnections {
+    background-color: #c4c4c4;
     border-radius: 10px;
     width: 895px;
     height: 593px;
@@ -17,8 +33,8 @@
     flex-direction: column;
     align-items: center;
 }
-  
-#nonProfitConnectionTitle{
+
+#nonProfitConnectionTitle {
     position: relative;
     width: 91%;
     top: 1%;
@@ -26,8 +42,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
-  
-#connectPanelWrapper{
+
+#connectPanelWrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -35,9 +51,9 @@
     padding-top: 5px;
     gap: 35px;
 }
-  
-.nonProfitPanel{
-    background-color: #9A9A9A;
+
+.nonProfitPanel {
+    background-color: #9a9a9a;
     width: 820px;
     height: 147px;
     border-radius: 10px;
@@ -45,8 +61,8 @@
     flex-direction: row;
     align-items: center;
 }
-  
-.nonProfitPhoto{
+
+.nonProfitPhoto {
     width: 124px;
     height: 124px;
     margin: 0;
@@ -54,14 +70,14 @@
     margin-left: 15px;
     border-radius: 10px;
 }
-  
-.nonProfitInfo{
+
+.nonProfitInfo {
     position: relative;
     left: 6%;
     height: 90%;
 }
-  
-.nonProfitStatus{
+
+.nonProfitStatus {
     position: absolute;
     right: 7%;
     text-align: end;
