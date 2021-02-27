@@ -64,6 +64,48 @@ $right-width: 540px;
 .dashboard-right {
     width: $right-width;
     background: $lightoffwhite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #backgroundOffset{
+        width: 430px;
+        height: 177.5px;
+        border: 2px solid $darkgreen;
+        border-radius: 11px;
+        background-color: $offwhite;
+    }
+    p{
+        color: $maroon;
+        padding: 0;
+        margin: 7px;
+    }
+    #userInfo{
+        background-color: $lightoffwhite;
+    }
+    #header{
+        font-size: 24px;
+        font-weight: bold;
+        position: relative;
+        left: 5%;
+        padding-top: 2%;
+    }
+    #picAndAddress{
+        display: flex;
+        flex-direction: row;
+    }
+    #headerPic{
+        width: 103.75px;
+        height: 103.75px;
+        border-radius: 11px;
+        position: relative;
+        left: 4%;
+    }
+    #address{
+        position: relative;
+        left: 3%;
+        padding-top: 2%;
+        font-size: 18px;
+    }
 }
 
 #nonProfitConnections {

@@ -10,6 +10,7 @@ import {
 import { useForm } from "react-hook-form";
 
 import { leafonly, homesvg, facesvg, thumbsupsvg, coffeesvg, door, cog } from '../../assets/svgs/svg'
+import restaurantLogo from '../../assets/logos/restaurantLogo.png'
 
 export default function Dashboard() {
 
@@ -25,7 +26,7 @@ export default function Dashboard() {
                                 {item.component}
                             </div>
                             <div className='dashboard-right'>
-
+                                {item.right}
                             </div>
                         </>
                     </Route>
@@ -45,6 +46,7 @@ const routes = [
     {
         to: '/',
         component: <DashboardHome />,
+        right: <DashboardHomeRight />
     },
 ]
 
@@ -136,7 +138,19 @@ function Sidebar() {
 function DashboardHomeRight() {
     return (
         <div>
-            home right
+            <div id = "userInfo">
+                <div id = "backgroundOffset">
+                    <p id = "header">Restaurant Name</p>
+                    <div id = "picAndAddress">
+                        <img id = "headerPic" src = {restaurantLogo} alt = "pic"/>
+                        <div id = "address">
+                            <p>FOODFORTHOUGHT INC.</p>
+                            <p>12345 SESAME ST</p>
+                            <p>ORLANDO FL 12345</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
