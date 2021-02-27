@@ -133,6 +133,38 @@ $right-width: 540px;
     position: absolute;
     right: 3%;
     text-align: end;
+    .status-pill {
+        display: inline;
+        padding: 6px 13px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        color: $offwhite;
+        &.progress {
+            color: $maroon;
+            background: $yelo;
+        }
+        &.accepting {
+            background: $darkgreen;
+        }
+        &.closed {
+            background: $lightmaroon;
+        }
+    }
+    .view-btn {
+        cursor: pointer;
+        margin: 37px -19px 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $darkgreen;
+        color: $offwhite;
+        padding: 10px 20px;
+        border-radius: 50px 0 0 50px;
+        svg {
+            margin-left: 14px;
+        }
+    }
 }
 
 .dashboard-card {
