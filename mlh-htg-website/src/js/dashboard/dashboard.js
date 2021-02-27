@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
+import { leafonly, homesvg, facesvg, thumbsupsvg, coffeesvg, door, cog } from '../../assets/svgs/svg'
+
 export default function Dashboard() {
 
 
@@ -21,6 +23,9 @@ export default function Dashboard() {
                             {<Sidebar />}
                             <div className='dashboard-content'>
                                 {item.component}
+                            </div>
+                            <div className='dashboard-right'>
+
                             </div>
                         </>
                     </Route>
@@ -35,6 +40,7 @@ const routes = [
     {
         to: '/connections',
         component: <Connections />,
+        right: <DashboardHomeRight />
     },
     {
         to: '/',
@@ -42,11 +48,95 @@ const routes = [
     },
 ]
 
+const sidebarnav = [
+    {
+        text: "home",
+        svg: homesvg,
+        to: '/dashboard'
+    },
+    {
+        text: "profile",
+        svg: facesvg,
+        to: '/dashboard/profile'
+    },
+    {
+        text: "reviews",
+        svg: thumbsupsvg,
+        to: '/dashboard/reviews'
+    },
+    {
+        text: "connections",
+        svg: coffeesvg,
+        to: '/dashboard/connections'
+    },
+]
 
 function Sidebar() {
+
+    let history = useHistory()
+
+
     return (
         <div className='dashboard-sidebar'>
-            sidebar
+            <div className='leaf-container'>
+                {leafonly}
+            </div>
+            <div className='sidebar-nav-wrapper' >
+
+                {sidebarnav.map(item => (
+                    <div key={item.text} className='item'
+                        onClick={e => {
+                            history.push(item.to)
+                        }}
+                    >
+                        <div className='icon'>
+                            {item.svg}
+                        </div>
+                        <div className='text'>
+                            {item.text}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className='sidebar-nav-wrapper bottom'>
+                <div className='item'
+                    onClick={e => {
+                        history.push('/dashboard/settings')
+                    }}
+                >
+                    <div className='icon'>
+                        {cog}
+                    </div>
+                    <div className='text'>
+                        settings
+                        </div>
+                </div>
+                <div className='item'
+                    onClick={e => {
+                        //history.push('/dash')
+                        console.log('need to log out')
+                    }}
+                >
+                    <div className='icon'>
+                        {door}
+                    </div>
+                    <div className='text'>
+                        log out
+                </div>
+                </div>
+            </div>
+
+        </div >
+    )
+}
+
+
+
+
+function DashboardHomeRight() {
+    return (
+        <div>
+            home right
         </div>
     )
 }
@@ -56,6 +146,7 @@ function DashboardHome() {
         <div className='d-home-wrapper'>
             <DashboardSearch />
             <DashboardWelcome />
+
         </div>
     )
 }
