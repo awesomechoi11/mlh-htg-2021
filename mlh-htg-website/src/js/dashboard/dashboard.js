@@ -10,6 +10,7 @@ import FoodForThought from './FoodForThought'
 import Connections, { ConnectionRight } from '../dashboard/Connections'
 import { homeRight, DashboardHome } from './dashboardHome'
 import { Sidebar } from './dashboardSidebar'
+import OrgProfile from './OrgProfile';
 
 
 export default function Dashboard() {
@@ -46,7 +47,7 @@ const routes = [
 
     {
         to: '/dashboard/connections/:id',
-        component: <Connections />,
+        component: <OrgProfile />,
         right: <ConnectionRight />
     },
     {

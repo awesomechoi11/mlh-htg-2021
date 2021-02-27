@@ -24,7 +24,6 @@ export default function Connections(props) {
             var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
             date = date.split(", ")
             date = faker.date.past().toDateString()
-            console.log(faker)
             setNonProfits(snapshot.docs.map(doc => ({ id: doc.id, time, date, email, phoneNumber, ...doc.data() })))
         })
         // getPhotoUrl().then(url => {
