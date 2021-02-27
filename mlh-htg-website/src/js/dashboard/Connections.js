@@ -41,18 +41,9 @@ export default function Connections() {
 function ConnectPanel(props) {
     var phoneNumber = faker.phone.phoneNumberFormat(0)
     var email = faker.internet.email()
-<<<<<<< Updated upstream
+    var str = faker.date.soon().toLocaleString()
     // var date = faker.date.soon()
     // console.log(date)
-    return (
-        <div className="nonProfitPanel">
-            <img className="nonProfitPhoto" src={props.photo} alt="profile pic" />
-            <div className="nonProfitInfo">
-                <p>{props.name}</p>
-                <p>{phoneNumber}</p>
-                <p>{email}</p>
-=======
-    var str = faker.date.soon().toLocaleString()
 
     return(
         <div className = "nonProfitPanel">
@@ -61,7 +52,6 @@ function ConnectPanel(props) {
                 <p>{ props.name }</p>
                 <p>{ phoneNumber }</p>
                 <p>{ str }</p>
->>>>>>> Stashed changes
             </div>
 
             <div className="nonProfitStatus">
