@@ -7,7 +7,7 @@ import {
     Link,
     useHistory,
 } from "react-router-dom";
-
+import { useForm } from "react-hook-form";
 
 export default function Dashboard() {
 
@@ -53,8 +53,50 @@ function Sidebar() {
 
 function DashboardHome() {
     return (
-        <div>
-            hello
+        <div className='d-home-wrapper'>
+            <DashboardSearch />
+            <DashboardWelcome />
         </div>
     )
+}
+
+function DashboardSearch() {
+    const { register, handleSubmit, watch, errors } = useForm();
+    const onSubmit = data => console.log(data);
+    return (
+        <div className='d-home-searchbar'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input type='text' name="d-search" placeholder='search organization, reviews, & more...' ref={register} />
+            </form>
+        </div>
+    )
+
+}
+
+function DashboardWelcome() {
+
+
+    return (
+        <div className='d-home-welcome '>
+            <div className='profile-image'>
+
+            </div>
+            <div className='welcome-info dashboard-card'>
+                <div className='top'>
+                    <span className='prefix'>
+                        Good morning,
+                    </span>
+                    {' '}
+                    <span className='name'>
+                        Sally Kim
+                    </span>
+                </div>
+                <div className='bottom'>
+                    How can we assist you today?
+                </div>
+            </div>
+
+        </div>
+    )
+
 }

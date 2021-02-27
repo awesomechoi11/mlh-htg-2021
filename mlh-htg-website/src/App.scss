@@ -1,9 +1,5 @@
-@font-face {
-  font-family: "Ovo";
-  src: local(Lato), url("./assets/Ovo/Ovo-Regular.ttf") format("truetype"),
-    url("https://fonts.googleapis.com/css2?family=Ovo&display=swap");
-  font-weight: normal;
-}
+@import "./sass/variables.scss";
+
 @font-face {
   font-family: "Quattrocento Sans";
   src: local(Quattrocento), local(Lato-Black),
@@ -19,7 +15,17 @@
   font-weight: bold;
 }
 
-@import "./sass/variables.scss";
+@font-face {
+  font-family: "Merriweather";
+  src: local(Merriweather), url("./assets/Merriweather/Merriweather-Regular.ttf") format("truetype"),
+    url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Merriweather";
+  src: local(Merriweather), url("./assets//Merriweather/Merriweather-Black.ttf") format("truetype");
+  font-weight: black;
+}
 
 html,
 body,
@@ -29,12 +35,28 @@ body,
   padding: 0;
   margin: 0;
   overflow: hidden;
-  font-family: Ovo;
+  font-family: Quattrocento Sans;
 }
-.nav-bar{
+
+.nav-bar {
   position: absolute;
   top: 0;
   width: 320px;
   height: 100%;
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0px 21px;
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  outline: none;
+  height: 40px;
+  background: #b0ae94;
+  color: $darkgreen;
+  font-weight: bold;
 }

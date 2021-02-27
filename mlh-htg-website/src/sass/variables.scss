@@ -15,6 +15,7 @@
     --lightmaroon: #a0624b;
     --darkturqoise: #2f443e;
     --maroon: #562817;
+    --low: #faf9f5;
 }
 //then call css variables as css variables
 $white: var(--white);
@@ -30,6 +31,7 @@ $lightgrey: var(--lightgrey);
 $lightmaroon: var(--lightmaroon);
 $darkturqoise: var(--darkturqoise);
 $maroon: var(--maroon);
+$lightoffwhite: var(--low);
 
 $font-lato: var(--lato);
 
