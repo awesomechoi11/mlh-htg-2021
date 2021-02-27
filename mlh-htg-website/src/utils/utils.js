@@ -7,9 +7,9 @@ const api = createApi({
 });
 
 export function getPhotoUrl(query = 'restaurant', orientation = 'squarish') {
-    api.search
+    return api.search
         .getPhotos({ query: query, orientation: orientation })
         .catch(() => {
             console.log("something went wrong!");
-        });
+        });    
 }
