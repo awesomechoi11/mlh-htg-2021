@@ -14,12 +14,9 @@ export default function Connections() {
             setNonProfits(snapshot.docs.map(doc => doc.data()))
         })
 
-        getPhotoUrl().then(url => {
-            setPhoto(url.response[0].urls.raw)
-        })
-        var str = faker.date.soon().toLocaleString()
-        var arr = str.split(", ")
-        console.log(arr)
+        // getPhotoUrl().then(url => {
+        //     setPhoto(url.response[0].urls.raw)
+        // })
     }, [])
 
     return (
@@ -41,9 +38,11 @@ export default function Connections() {
 function ConnectPanel(props) {
     var phoneNumber = faker.phone.phoneNumberFormat(0)
     var email = faker.internet.email()
-    var str = faker.date.soon().toLocaleString()
-    // var date = faker.date.soon()
-    // console.log(date)
+    var time = faker.date.between('2021-02-29', '2021-03-20').toLocaleString(navigator.language, {hour: '2-digit', minute:'2-digit'})
+    .replace(/(:\d{2})$/, "")
+    var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
+    date = date.split(", ")
+    date = date[0]
 
     return(
         <div className = "nonProfitPanel">
@@ -51,7 +50,7 @@ function ConnectPanel(props) {
             <div className = "nonProfitInfo">
                 <p>{ props.name }</p>
                 <p>{ phoneNumber }</p>
-                <p>{ str }</p>
+                <p>PICKUP AVAILABLE: { "\xa0" + time + "\xa0\xa0" + date}</p>
             </div>
 
             <div className="nonProfitStatus">
