@@ -6,10 +6,10 @@ const api = createApi({
     accessKey: "5f2zmD2PP-Zqd3MZUCAN-hXS04jFnqIg3WofN11W02A"
 });
 
-export function getPhotoUrl(query = 'restaurant', orientation = 'squarish') {
+export function getPhotoUrl(query = 'restaurant', orientation = 'squarish', count = 1) {
     return api.search
-        .getPhotos({ query: query, orientation: orientation })
+        .getPhotos({ query: query, orientation: orientation, count: count })
         .catch(() => {
             console.log("something went wrong!");
-        });    
+        });
 }
