@@ -17,7 +17,9 @@ export default function Connections() {
         getPhotoUrl().then(url => {
             setPhoto(url.response[0].urls.raw)
         })
-        console.log(faker.date.soon())
+        var str = faker.date.soon().toLocaleString()
+        var arr = str.split(", ")
+        console.log(arr)
     }, [])
 
     return (
@@ -39,6 +41,7 @@ export default function Connections() {
 function ConnectPanel(props) {
     var phoneNumber = faker.phone.phoneNumberFormat(0)
     var email = faker.internet.email()
+<<<<<<< Updated upstream
     // var date = faker.date.soon()
     // console.log(date)
     return (
@@ -48,6 +51,17 @@ function ConnectPanel(props) {
                 <p>{props.name}</p>
                 <p>{phoneNumber}</p>
                 <p>{email}</p>
+=======
+    var str = faker.date.soon().toLocaleString()
+
+    return(
+        <div className = "nonProfitPanel">
+            <img className = "nonProfitPhoto" src = { props.photo } alt = "profile pic"/> 
+            <div className = "nonProfitInfo">
+                <p>{ props.name }</p>
+                <p>{ phoneNumber }</p>
+                <p>{ str }</p>
+>>>>>>> Stashed changes
             </div>
 
             <div className="nonProfitStatus">
