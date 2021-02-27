@@ -1,8 +1,8 @@
 import { firestore } from '../../utils/firebase'
 import { useState, useEffect } from 'react'
-import { getPhotoUrl } from '../../utils/utils' 
-import faker from 'faker'
+import { getPhotoUrl } from '../../utils/utils'
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import faker from 'faker'
 
 export default function Connections() {
     const [nonProfits, setNonProfits] = useState()
@@ -20,37 +20,37 @@ export default function Connections() {
         console.log(faker.date.soon())
     }, [])
 
-    return(
-        <div id = "nonProfitConnections">
-            <p id = "nonProfitConnectionTitle">
+    return (
+        <div id="nonProfitConnections">
+            <p id="nonProfitConnectionTitle">
                 <span>NON-PROFIT ORGANIZATION CONNECTIONS</span>
                 <span>VIEW ALL</span>
             </p>
             <PerfectScrollbar>
-            <div id = "connectPanelWrapper">
-                { nonProfits && nonProfits.map(org => <ConnectPanel key = {org.webURL} name = {org.name} photo = {photo}/>)}
-            </div>
+                <div id="connectPanelWrapper">
+                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} name={org.name} photo={photo} />)}
+                </div>
             </PerfectScrollbar>
-        </div>  
-        
+        </div>
+
     )
 }
 
-function ConnectPanel(props){
+function ConnectPanel(props) {
     var phoneNumber = faker.phone.phoneNumberFormat(0)
     var email = faker.internet.email()
     // var date = faker.date.soon()
     // console.log(date)
-    return(
-        <div className = "nonProfitPanel">
-            <img className = "nonProfitPhoto" src = { props.photo } alt = "profile pic"/> 
-            <div className = "nonProfitInfo">
-                <p>{ props.name }</p>
-                <p>{ phoneNumber }</p>
-                <p>{ email }</p>
+    return (
+        <div className="nonProfitPanel">
+            <img className="nonProfitPhoto" src={props.photo} alt="profile pic" />
+            <div className="nonProfitInfo">
+                <p>{props.name}</p>
+                <p>{phoneNumber}</p>
+                <p>{email}</p>
             </div>
-        
-            <div className = "nonProfitStatus">
+
+            <div className="nonProfitStatus">
                 <p>STATUS: ACCEPTING</p>
                 <br></br>
                 <br></br>

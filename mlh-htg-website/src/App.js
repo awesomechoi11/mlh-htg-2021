@@ -80,7 +80,7 @@ const routes = [
     children: <div className='nav-account'>ACCOUNT</div>,
     component: <Dashboard />,
     navbar: true
-  }, {  
+  }, {
     to: '/search',
     children: <div className='nav-search'>SEARCH</div>,
     component: <Search />,
