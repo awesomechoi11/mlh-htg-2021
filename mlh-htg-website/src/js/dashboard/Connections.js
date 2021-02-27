@@ -17,7 +17,9 @@ export default function Connections() {
         getPhotoUrl().then(url => {
             setPhoto(url.response[0].urls.raw)
         })
-        console.log(faker.date.soon())
+        var str = faker.date.soon().toLocaleString()
+        var arr = str.split(", ")
+        console.log(arr)
     }, [])
 
     return (
@@ -39,15 +41,17 @@ export default function Connections() {
 function ConnectPanel(props) {
     var phoneNumber = faker.phone.phoneNumberFormat(0)
     var email = faker.internet.email()
+    var str = faker.date.soon().toLocaleString()
     // var date = faker.date.soon()
     // console.log(date)
-    return (
-        <div className="nonProfitPanel">
-            <img className="nonProfitPhoto" src={props.photo} alt="profile pic" />
-            <div className="nonProfitInfo">
-                <p>{props.name}</p>
-                <p>{phoneNumber}</p>
-                <p>{email}</p>
+
+    return(
+        <div className = "nonProfitPanel">
+            <img className = "nonProfitPhoto" src = { props.photo } alt = "profile pic"/> 
+            <div className = "nonProfitInfo">
+                <p>{ props.name }</p>
+                <p>{ phoneNumber }</p>
+                <p>{ str }</p>
             </div>
 
             <div className="nonProfitStatus">
