@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getPhotoUrl } from '../../utils/utils' 
 import faker from 'faker'
 
-export default function Connections(){
+export default function Connections() {
     const [nonProfits, setNonProfits] = useState()
     const [photo, setPhoto] = useState()
 
@@ -26,26 +26,26 @@ export default function Connections(){
             </div>
         </div>  
     )
-}   
+}
 
 function ConnectPanel(props){
     var phoneNumber = faker.phone.phoneNumberFormat(0)
     var email = faker.internet.email()
     return(
         <div className = "nonProfitPanel">
-        <img className = "nonProfitPhoto" src = { props.photo } alt = "profile pic"/> 
-        <div className = "nonProfitInfo">
-           <p>{ props.name }</p>
-           <p>{ phoneNumber }</p>
-           <p>{ email }</p>
+            <img className = "nonProfitPhoto" src = { props.photo } alt = "profile pic"/> 
+            <div className = "nonProfitInfo">
+                <p>{ props.name }</p>
+                <p>{ phoneNumber }</p>
+                <p>{ email }</p>
+            </div>
+        
+            <div className = "nonProfitStatus">
+                <p>STATUS: ACCEPTING</p>
+                <br></br>
+                <br></br>
+                <p>GOTO PROFILE</p>
+            </div>
         </div>
-       
-        <div className = "nonProfitStatus">
-           <p>STATUS: ACCEPTING</p>
-           <br></br>
-           <br></br>
-           <p>GOTO PROFILE</p>
-        </div>
-   </div>
     )
 }
