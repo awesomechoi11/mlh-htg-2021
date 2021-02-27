@@ -20,7 +20,9 @@ $right-width: 540px;
 
     .leaf-container {
         width: 76px;
-        fill: #562817;
+        #logo2 .cls-1 {
+            fill: #562817 !important;
+        }
         margin: 47px 38px;
         margin-bottom: 93px;
     }
@@ -29,7 +31,7 @@ $right-width: 540px;
         width: 270px;
 
         &.bottom {
-            margin-top: 330px;
+            margin-top: 360px;
         }
     }
     .item {
@@ -109,21 +111,22 @@ $right-width: 540px;
 }
 
 #nonProfitConnections {
-    background-color: #c4c4c4;
-    border-radius: 10px;
-    width: 895px;
-    height: 593px;
-    position: relative;
-    top: 10%;
-    left: 10%;
+    border-radius: 11px;
+    width: 100%;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 30px;
+
+    .scrollbar-container {
+        width: 100%;
+    }
 }
 
 #nonProfitConnectionTitle {
     position: relative;
-    width: 91%;
+    width: 100%;
     top: 1%;
     display: flex;
     flex-direction: row;
@@ -131,7 +134,7 @@ $right-width: 540px;
 }
 
 #connectPanelWrapper {
-    width: 100%;
+    width: 99%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,7 +144,7 @@ $right-width: 540px;
 
 .nonProfitPanel {
     background-color: #9a9a9a;
-    width: 820px;
+    width: 100%;
     height: 147px;
     border-radius: 10px;
     display: flex;
@@ -160,18 +163,55 @@ $right-width: 540px;
 
 .nonProfitInfo {
     position: relative;
-    left: 6%;
+    left: 2%;
     height: 90%;
+    .title {
+        font-weight: bold;
+        font-size: 18px;
+    }
 }
 
 .nonProfitStatus {
     position: absolute;
     right: 3%;
     text-align: end;
+    .status-pill {
+        display: inline;
+        padding: 6px 13px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        color: $offwhite;
+        &.progress {
+            color: $maroon;
+            background: $yelo;
+        }
+        &.accepting {
+            background: $darkgreen;
+        }
+        &.closed {
+            background: $lightmaroon;
+        }
+    }
+    .view-btn {
+        cursor: pointer;
+        margin: 37px -19px 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $darkgreen;
+        color: $offwhite;
+        padding: 10px 20px;
+        border-radius: 50px 0 0 50px;
+        svg {
+            margin-left: 14px;
+        }
+    }
 }
 
 .dashboard-card {
-    box-shadow: $darkgreen 4px 4px;
+    box-shadow: $darkgreen 7px 7px;
+    background: $lightoffwhite;
 }
 
 .d-home-searchbar {
@@ -187,10 +227,9 @@ $right-width: 540px;
     .profile-image {
         position: absolute;
         border-radius: 100%;
-        height: 206px;
-        width: 206px;
-        background: red;
-        top: -$offset;
+        height: 250px;
+        width: 250px;
+        top: -80px;
         right: 85px;
     }
 
@@ -219,6 +258,61 @@ $right-width: 540px;
             font-size: 18px;
             font-family: "Quattrocento Sans";
             color: $darkgreen;
+        }
+    }
+}
+
+.d-home-stats {
+    margin-top: 64px;
+    height: 163px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    > * {
+        width: 100%;
+    }
+
+    .title {
+        font-family: Quattrocento Sans;
+        font-weight: bold;
+        font-size: 24px;
+        color: $maroon;
+    }
+    .card-wrapper {
+        width: 100%;
+        height: 116px;
+    }
+}
+.d-home-stats .card-wrapper {
+    font-family: Quattrocento Sans;
+    display: flex;
+    justify-content: space-between;
+    .card-item {
+        width: 216px;
+        height: 100%;
+        border-radius: 11px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        > * {
+            width: 184px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .value {
+            font-weight: bold;
+            font-size: 36px;
+            text-align: center;
+        }
+        .percentage {
+            font-size: 18px;
+            span {
+                color: #1c890a;
+            }
         }
     }
 }
