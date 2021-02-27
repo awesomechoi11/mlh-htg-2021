@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getPhotoUrl } from '../../utils/utils'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import faker from 'faker'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom'
 
 export default function Connections(props) {
     const [nonProfits, setNonProfits] = useState()
@@ -40,7 +40,7 @@ export default function Connections(props) {
             </p>
             <PerfectScrollbar>
                 <div id="connectPanelWrapper">
-                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} {...org} schedule={schedule} showProfile = {props.showProfile}/>)}
+                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} {...org} schedule={schedule} showProfile={props.showProfile} />)}
                 </div>
             </PerfectScrollbar>
         </div>
@@ -79,7 +79,7 @@ function ConnectPanel(props) {
                 <div className={'status-pill ' + currstatus}>
                     {currstatus}
                 </div>
-                <div className='view-btn' onClick = {e => {history.push('dashboard/connections/' + props.id)}}>
+                <div className='view-btn' onClick={e => { history.push(`/dashboard/connections/${props.id}`) }}>
                     view organization profile {' '}
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1.39526 8.5H15.3953" stroke="#EAE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -90,4 +90,27 @@ function ConnectPanel(props) {
             </div>
         </div>
     )
+}
+
+
+export function ConnectionRight() {
+
+    let { id } = useParams();
+    const [docData, setDocData] = useState('loading');
+
+    var docRef = firestore.doc('hackathonstuff/mlhhtg2021/nonprofits/' + id)
+    docRef.get().then(data => {
+        //console.log(data.data())
+        setDocData(JSON.stringify(data.data()))
+    }).catch(e => {
+        setDocData(e)
+        console.log('connectionright ', e)
+    })
+
+    return (
+        <div>
+            {docData}
+        </div>
+    )
+
 }

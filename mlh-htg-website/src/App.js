@@ -15,6 +15,9 @@ import Home from './js/home/home'
 import About from './js/about/about'
 import Login from './js/login/login'
 
+import run from './utils/reviewdatagen'
+
+console.log(run)
 
 function App() {
 

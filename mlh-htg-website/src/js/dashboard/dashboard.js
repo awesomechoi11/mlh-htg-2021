@@ -1,4 +1,3 @@
-import Connections from '../dashboard/Connections'
 import {
     Switch,
     Route,
@@ -8,6 +7,7 @@ import '../../sass/dashboard.scss'
 import ProfileHeader from './ProfileHeader'
 import FoodForThought from './FoodForThought'
 
+import Connections, { ConnectionRight } from '../dashboard/Connections'
 import { homeRight, DashboardHome } from './dashboardHome'
 import { Sidebar } from './dashboardSidebar'
 
@@ -47,7 +47,7 @@ const routes = [
     {
         to: '/dashboard/connections/:id',
         component: <Connections />,
-        right: '123'
+        right: <ConnectionRight />
     },
     {
         to: '/dashboard/connections',
@@ -55,7 +55,7 @@ const routes = [
         right: 'empty state for connections'
     },
     {
-        to: '/',
+        to: '/dashboard',
         component: <DashboardHome />,
         right: homeRight
     },
