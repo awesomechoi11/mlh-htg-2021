@@ -57,6 +57,7 @@ body,
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 }
 
 #nonProfitConnectionTitle{
@@ -64,6 +65,15 @@ body,
   top: 1%;
   left: 1%;
   align-self: end;
+}
+
+#connectPanelWrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5px;
+  gap: 35px;
 }
 
 .nonProfitPanel{
@@ -92,8 +102,7 @@ body,
 }
 
 .nonProfitStatus{
-  position: relative;
-  left: 39%;
-  height: 90%;
+  position: absolute;
+  right: 7%;
   text-align: end;
 }

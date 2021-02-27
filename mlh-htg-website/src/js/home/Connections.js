@@ -1,6 +1,7 @@
 import { firestore } from '../../utils/firebase'
 import { useState, useEffect } from 'react'
 import { getPhotoUrl } from '../../utils/utils' 
+import faker from 'faker'
 
 export default function Connections(){
     const [nonProfits, setNonProfits] = useState()
@@ -11,28 +12,32 @@ export default function Connections(){
         nonprofits.get().then(snapshot => {
             setNonProfits(snapshot.docs.map(doc => doc.data()))
         })
+
         getPhotoUrl().then(url => {
             setPhoto(url.response.results[0].urls.raw)
         })
-
     }, [])
 
     return(
         <div id = "nonProfitConnections">
             <p id = "nonProfitConnectionTitle">NON-PROFIT ORGANIZATION CONNECTIONS</p>
-            <ConnectPanel photo = {photo}/>
-        </div>
+            <div id = "connectPanelWrapper">
+                { nonProfits && nonProfits.map(org => <ConnectPanel key = {org.webURL} name = {org.name} photo = {photo}/>)}
+            </div>
+        </div>  
     )
 }   
 
 function ConnectPanel(props){
+    var phoneNumber = faker.phone.phoneNumberFormat(0)
+    var email = faker.internet.email()
     return(
         <div className = "nonProfitPanel">
-        <img className = "nonProfitPhoto" src = { photo } alt = "profile pic"/> 
+        <img className = "nonProfitPhoto" src = { props.photo } alt = "profile pic"/> 
         <div className = "nonProfitInfo">
-           <p>ORGANIZATION NAME</p>
-           <p>PHONE NUMBER</p>
-           <p>EMAIL</p>
+           <p>{ props.name }</p>
+           <p>{ phoneNumber }</p>
+           <p>{ email }</p>
         </div>
        
         <div className = "nonProfitStatus">
