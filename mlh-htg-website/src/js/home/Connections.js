@@ -12,7 +12,8 @@ export default function Connections() {
             setNonProfits(snapshot.docs.map(doc => doc.data()))
         })
         getPhotoUrl().then(url => {
-            setPhoto(url.response.results[0].urls.raw)
+            setPhoto(url.response[0].urls.raw)
+            //console.log(url)
         })
 
     }, [])
