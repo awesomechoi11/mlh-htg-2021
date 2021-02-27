@@ -7,13 +7,17 @@ import faker from 'faker'
 export default function Connections() {
     const [nonProfits, setNonProfits] = useState()
     const [photo, setPhoto] = useState()
+    const [schedules, setSchedules] = useState([])
+    console.log(schedules)
+    function schedule(newSchedule){
+        setSchedules(schedules => [...schedules, newSchedule])
+    }
 
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
         nonprofits.get().then(snapshot => {
             setNonProfits(snapshot.docs.map(doc => doc.data()))
         })
-
         // getPhotoUrl().then(url => {
         //     setPhoto(url.response[0].urls.raw)
         // })
@@ -27,7 +31,7 @@ export default function Connections() {
             </p>
             <PerfectScrollbar>
                 <div id="connectPanelWrapper">
-                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} name={org.name} photo={photo} />)}
+                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} name={org.name} photo={photo} schedule = {schedule} address = {org.address}/>)}
                 </div>
             </PerfectScrollbar>
         </div>
@@ -55,9 +59,8 @@ function ConnectPanel(props) {
 
             <div className="nonProfitStatus">
                 <p>STATUS: ACCEPTING</p>
-                <br></br>
-                <br></br>
                 <p>GOTO PROFILE</p>
+                <button onClick = {() => props.schedule({name: props.name, time: time, date: date, address: props.address})}>Schedule</button>
             </div>
         </div>
     )
