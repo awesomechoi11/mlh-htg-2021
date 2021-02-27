@@ -145,6 +145,7 @@ function DashboardHome() {
             <DashboardSearch />
             <DashboardWelcome />
             <DHomeStats />
+            <Connections />
         </div>
     )
 }
