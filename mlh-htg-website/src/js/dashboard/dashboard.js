@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { leafonly, homesvg, facesvg, thumbsupsvg, coffeesvg, door, cog } from '../../assets/svgs/svg'
+import { leafonly, homesvg, facesvg, thumbsupsvg, coffeesvg, door, cog, homeavatar } from '../../assets/svgs/svg'
 
 export default function Dashboard() {
 
@@ -131,8 +131,6 @@ function Sidebar() {
 }
 
 
-
-
 function DashboardHomeRight() {
     return (
         <div>
@@ -146,7 +144,7 @@ function DashboardHome() {
         <div className='d-home-wrapper'>
             <DashboardSearch />
             <DashboardWelcome />
-
+            <DHomeStats />
         </div>
     )
 }
@@ -166,11 +164,10 @@ function DashboardSearch() {
 
 function DashboardWelcome() {
 
-
     return (
         <div className='d-home-welcome '>
             <div className='profile-image'>
-
+                {homeavatar}
             </div>
             <div className='welcome-info dashboard-card'>
                 <div className='top'>
@@ -190,4 +187,57 @@ function DashboardWelcome() {
         </div>
     )
 
+}
+
+function DHomeStats() {
+
+    const statdata = [
+        {
+            title: 'total donated (lbs)',
+            value: '1,230',
+            percentage: '5.2%'
+        },
+        {
+            title: 'reviews this month',
+            value: '13',
+            percentage: '2.1%'
+        },
+        {
+            title: 'people fed',
+            value: '321',
+            percentage: '54.2%'
+        },
+        {
+            title: 'food waste prevented',
+            value: '37%',
+            percentage: '15.3%'
+        },
+    ]
+
+    return (
+        <div className='d-home-stats'>
+            <div className='title'>
+                monthly reports
+            </div>
+            <div className='card-wrapper'>
+                {statdata.map(item => (
+                    <div className='card-item dashboard-card'>
+                        <div className='title'>
+                            {item.title}
+                        </div>
+                        <div className='value'>
+                            {item.value}
+                        </div>
+                        <div className='percentage'>
+                            <span>
+                                {item.percentage}
+                            </span>
+                            {' '}
+                            since last month
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
 }
