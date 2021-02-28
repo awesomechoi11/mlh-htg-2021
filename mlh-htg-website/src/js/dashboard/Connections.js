@@ -4,7 +4,7 @@ import { getPhotoUrl } from '../../utils/utils'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import faker from 'faker'
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState, useRecoilState   } from 'recoil'
 import {
     scheduleAtom,
     orgInfoAtom
@@ -13,8 +13,6 @@ import { add, trash, calender } from '../../assets/svgs/svg'
 
 export default function Connections(props) {
     const [nonProfits, setNonProfits] = useState()
-
-
 
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits').limit(25)
@@ -54,6 +52,7 @@ export default function Connections(props) {
 function ConnectPanel(props) {
     const schedules = useRecoilValue(scheduleAtom)
     const setSelectedOrg = useSetRecoilState(orgInfoAtom)
+    
     const status = [
         'accepting',
         'closed',
@@ -146,10 +145,20 @@ function ConnectionsBanner() {
 
 export function ConnectionRight(){
     const orgInfo = useRecoilValue(orgInfoAtom)
-    console.log(orgInfo)
+    const [selectedOrg, setSelectedOrg] = useRecoilState(orgInfoAtom)
+    const [scheduled, setSchedule] = useRecoilState(scheduleAtom)
+
     var status
     if(orgInfo){
         status = orgInfo.status == "in progress" ? "progress" : orgInfo.status
+    }
+    function requestPickUp(){
+        if(orgInfo.status != "in progress"){
+            var obj = JSON.parse(JSON.stringify(selectedOrg))
+            obj.status = "in progress"
+            setSelectedOrg(obj)
+            setSchedule([...scheduled, obj])
+        }
     }
     return(
         <>
@@ -174,7 +183,7 @@ export function ConnectionRight(){
                                 <div id = "calender">{calender}</div>
                             </div>
                             <div id = "btnWrapper">
-                                <div className={'status-pill pickup'}>request pickup</div>
+                                <div className={'status-pill pickup'} onClick = {requestPickUp}>request pickup</div>
                                 <div className={'status-pill cancel'}>cancel pickup appointment</div>
                             </div>
                             </>
