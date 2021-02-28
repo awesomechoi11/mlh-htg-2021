@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams
 } from "react-router-dom";
 
 import { useEffect, useState } from 'react'
@@ -18,7 +18,7 @@ const containerStyle = {
     height: '400px'
 }
 
-export default function OrgProfile(props){
+export default function OrgProfile(props) {
     let { id } = useParams()
     const [data, setData] = useState()
     const [center, setCenter] = useState()
@@ -31,7 +31,7 @@ export default function OrgProfile(props){
     var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
     date = date.split(", ")
     date = date[0]
-    
+
     Geocode.setApiKey("AIzaSyCumPp-MUvheo1S7ixUDqVoz-13ypCnjE4")
 
     const { isLoaded } = useJsApiLoader({
@@ -54,24 +54,27 @@ export default function OrgProfile(props){
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
         nonprofits.doc(id).get().then(doc => {
-            setData(doc.data())
-            Geocode.fromAddress(doc.data().address).then(
-                (response) => {
-                  const { lat, lng } = response.results[0].geometry.location;
-                  //console.log(lat, lng);
-                  setCenter({lat, lng})
-                  setZoom(15)
-                },
-                (error) => {
-                  console.error(error);
-                }
-            )
+            if (doc.exists) {
+
+                setData(doc.data())
+                Geocode.fromAddress(doc.data().address).then(
+                    (response) => {
+                        const { lat, lng } = response.results[0].geometry.location;
+                        //console.log(lat, lng);
+                        setCenter({ lat, lng })
+                        setZoom(15)
+                    },
+                    (error) => {
+                        console.error(error);
+                    }
+                )
+            }
         })
     }, [])
 
-    return(
+    return (
         <div>
-            {data && 
+            {data &&
                 <div>
                     <p>{data.name}</p>
                     <p>{data.address}</p>
@@ -81,7 +84,7 @@ export default function OrgProfile(props){
                     <p>{date}</p>
                 </div>
             }
-            {isLoaded ? 
+            {isLoaded ?
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
@@ -89,10 +92,10 @@ export default function OrgProfile(props){
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                 >
-                <Marker position={center} />
-            <></>
-            </GoogleMap> : <></>}
-            <div onClick = {props.schedule}></div>
+                    <Marker position={center} />
+                    <></>
+                </GoogleMap> : <></>}
+            <div onClick={props.schedule}></div>
         </div>
     )
 }
