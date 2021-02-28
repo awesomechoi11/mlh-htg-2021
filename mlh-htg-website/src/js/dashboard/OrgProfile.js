@@ -13,7 +13,7 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import Geocode from "react-geocode"
 import faker from 'faker'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { scheduleAtom, userUIDFromFirebaseAtom } from '../../utils/atoms'
+import { scheduleAtom, userUIDFromFirebaseAtom, orgInfoAtom } from '../../utils/atoms'
 import { addSchedule } from '../../utils/firebaseFunctions'
 
 const containerStyle = {
@@ -23,6 +23,7 @@ const containerStyle = {
 
 export default function OrgProfile(){
     const [scheduled, setSchedule] = useRecoilState(scheduleAtom)
+    const [orgAtom, setOrgAtom] = useRecoilState(orgInfoAtom)
     const uid = useRecoilValue(userUIDFromFirebaseAtom)
     const [data, setData] = useState()
     const [center, setCenter] = useState()
@@ -32,7 +33,12 @@ export default function OrgProfile(){
     function addToSchedule(){
         data.time = fakeData.time
         data.date = fakeData.date
+
         setSchedule([...scheduled, data])
+
+        var obj = JSON.parse(JSON.stringify(orgAtom))
+        obj.status = "in progress"
+        setOrgAtom(obj)
         //adds schedule to firestore
         if(uid){
             addSchedule(uid, data)

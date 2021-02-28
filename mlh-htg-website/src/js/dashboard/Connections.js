@@ -147,6 +147,10 @@ function ConnectionsBanner() {
 export function ConnectionRight(){
     const orgInfo = useRecoilValue(orgInfoAtom)
     console.log(orgInfo)
+    var status
+    if(orgInfo){
+        status = orgInfo.status == "in progress" ? "progress" : orgInfo.status
+    }
     return(
         <>
         <div className = "connectRight">
@@ -156,7 +160,7 @@ export function ConnectionRight(){
                         {orgInfo && <>
                             <div id = "titleAndStatus">
                                 <p id = "title">{orgInfo.name}</p>
-                                <div className={'status-pill ' + orgInfo.status}>{orgInfo.status}</div>
+                                <div className={'status-pill ' + status}>{orgInfo.status}</div>
                             </div>
                             <p id = "connectAddress">{orgInfo.address}</p>
                             <div id = "hoursWrapper">
@@ -182,8 +186,8 @@ export function ConnectionRight(){
                 <div id = "todoAndIcons">
                     <p id = "todoListTitle">my to-do list</p>
                     <div id = "icons">
-                        {add}
-                        {trash}
+                        <div className = "icon">{add}</div>
+                        <div className = "icon">{trash}</div>
                     </div>
                 </div>
 

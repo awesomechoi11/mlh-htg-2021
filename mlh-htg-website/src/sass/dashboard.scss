@@ -491,6 +491,14 @@ $right-width: 540px;
             right: 10%;
             top: 4%;
         }
+        &.progress {
+            display: inline-table;
+            color: $maroon;
+            background: $yelo;
+            position: absolute;
+            right: 7%;
+            top: 4%;
+        }
     }
 
     p{
@@ -604,6 +612,10 @@ $right-width: 540px;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .icon{
+        cursor: pointer;
     }
 
     #icons{
