@@ -30,7 +30,7 @@ import {
 import anonpng from '../../assets/login/anon.png';
 import gpng from '../../assets/login/google.png';
 
-
+import { leafonly } from '../../assets/svgs/svg'
 
 function toastErr(msg) {
     toast.error(msg, {
@@ -376,10 +376,12 @@ export default function Login() {
         } else {
             //user is not logged in
             //show user login page
-            if (mode === 'signin' || mode === 'signup') {
+            if (mode === 'signin') {
 
                 loginPlatformLeft = <LoginForm></LoginForm>
-            } else {
+            }else if(mode == 'signup'){
+                loginPlatformLeft = <RegisterForm></RegisterForm>
+            } else {    
                 loginPlatformLeft = (
                     <div className='login-form-title dutch-white'>
                         uh oh! pls refresh
@@ -389,9 +391,9 @@ export default function Login() {
         }
     }
     if (!platform) {
-
+        var registerWidth = mode == 'signup' ? {width: '1000px'} : null
         platform = (
-            <div id='login-platform'>
+            <div id='login-platform' style = {registerWidth}>
 
                 <div className='login-platform-left'>
                     {loginPlatformLeft}
@@ -409,6 +411,15 @@ export default function Login() {
     return (
         <div className="login app-page" >
             {platform}
+            {mode === 'signup' &&
+            <div className = "setUpHeader">
+                <div id = 'logo'>{leafonly}</div>
+                <div id = "setUpWrapper">
+                    <p id = "setUp1">Organization Account Setup</p>
+                    <p id = "setUp2">Set up an account for your organization</p>
+                </div>
+            </div>
+            }
         </div>
     )
 
@@ -468,19 +479,20 @@ function LoginForm() {
                 alt='anon mask' />
         </div>
     )
-
     return (
         <>
             <form id='login-form' onSubmit={e => {
                 e.preventDefault()
             }}>
-                <div className="login-form-wrapper">
-                    <label className="login-form-label" htmlFor="email">EMAIL</label>
-                    <input ref={register} id="email" name="email" type="email" className="login-form" />
-                </div>
-                <div className="login-form-wrapper">
-                    <label className="login-form-label" htmlFor="password">PASSWORD</label>
-                    <input ref={register} id="password" name="password" type="password" className="login-form" />
+                <div>
+                    <div className="login-form-wrapper">
+                        <label className="login-form-label" htmlFor="email">EMAIL</label>
+                        <input ref={register} id="email" name="email" type="email" className="login-form" />
+                    </div>
+                    <div className="login-form-wrapper">
+                        <label className="login-form-label" htmlFor="password">PASSWORD</label>
+                        <input ref={register} id="password" name="password" type="password" className="login-form" />
+                    </div>
                 </div>
             </form>
             {altsignin}
@@ -495,7 +507,99 @@ function LoginForm() {
                 }}
             >
 
-                <span>DONT</span> HAVE AN ACCOUNT? {mode === 'signin' ? ' SIGN IN ' : ' SIGN UP '} <span className='dutch-white'>HERE</span>
+            {mode === 'signin' && <><span>DONT HAVE AN ACCOUNT? SIGN UP </span><span className='dutch-white'>HERE</span></>}
+            </div>
+
+        </>
+    )
+}
+
+function RegisterForm(){
+    const [mode, setMode] = useRecoilState(currentModeAtom)
+    const setUserLoginValues = useSetRecoilState(userLoginValuesAtom)
+
+    const { register, watch } = useForm();
+    const watchAllFields = watch();
+
+    useEffect(() => {
+        setUserLoginValues(watchAllFields)
+    }, [watchAllFields])
+
+    function anonsignin() {
+        fireauth.signInAnonymously()
+            .then(handleSuccess)
+            .catch(handleError);
+    }
+
+    function googlesignin() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        fireauth.signInWithPopup(provider)
+            .then(handleSuccess)
+            .catch(handleError);
+
+    }
+
+    const altsignin = (
+        <div className='alternate-signin'>
+            <div className='alternate-login-label'>
+                <span className='dutch-white'>OR</span> SIGN UP WITH:
+            </div>
+            <img className='alternate-login-png' src={gpng}
+                alt='google login logo'
+                onClick={googlesignin}
+            />
+
+            <img className='alternate-login-png' src={anonpng}
+                onClick={anonsignin}
+                alt='anon mask' />
+        </div>
+    )
+    return (
+        <>
+            <form id= 'register-form' onSubmit={e => {
+                e.preventDefault()
+            }}>
+                <div>
+                    <div className="login-form-wrapper">
+                        <label className="login-form-label" htmlFor="email">EMAIL</label>
+                        <input ref={register} id="email" name="email" type="email" className="login-form" />
+                    </div>
+                    <div className="login-form-wrapper">
+                        <label className="login-form-label" htmlFor="password">USERNAME</label>
+                        <input ref={register} id="password" name="password" type="name" className="login-form" />
+                    </div>
+                    <div className="login-form-wrapper">
+                        <label className="login-form-label" htmlFor="password">PASSWORD</label>
+                        <input ref={register} id="password" name="password" type="password" className="login-form" />
+                    </div>
+                </div>
+                <div>
+                    <div className="login-form-wrapper">
+                        <label className="login-form-label" htmlFor="email">ORGANIZATION NAME</label>
+                        <input ref={register} id="email" name="email" type="email" className="login-form" />
+                    </div>
+                    <div className="login-form-wrapper">
+                        <label className="login-form-label" htmlFor="password">ORGANIZATION WEBSITE</label>
+                        <input ref={register} id="password" name="password" type="name" className="login-form" />
+                    </div>
+                    {altsignin}
+                </div>
+            </form>
+            <div id = "signInRouteWrapper">
+                <span>ALREADY HAVE AN ACCOUNT? </span>
+                <div className='here-button'
+                    onClick={e => {
+                        if (mode === 'signin') {
+                            setMode('signup')
+                        } else if (mode === 'signup') {
+                            setMode('signin')
+                        }
+
+                    }}
+                >
+
+                <span className='dutch-white' style = {{textDecoration: 'underline'}}> SIGN IN HERE</span>
+                </div>
             </div>
 
         </>
