@@ -1,6 +1,6 @@
 import '../../sass/home.scss';
 
-import { girlandfloor, stats1, stats2, stats3, leafonly } from '../../assets/svgs/svg'
+import { girlandfloor, stats1, stats2, stats3, leafonly, trashbinfront, trashbinback } from '../../assets/svgs/svg'
 import { motion } from "framer-motion"
 import { useHistory } from 'react-router-dom';
 
@@ -50,7 +50,10 @@ export default function Home() {
             <div className='gnf-wrapper'>
                 {girlandfloor}
             </div>
-
+            <div className='trashfront'>{trashbinfront}</div>
+            <div className='trashback'>
+                {trashbinback}
+            </div>
         </motion.div>
     )
 
@@ -116,6 +119,7 @@ export function Question() {
                         </span>
                     </div>
                 </div>
+
 
             </div>
 
