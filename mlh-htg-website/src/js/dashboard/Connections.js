@@ -17,8 +17,7 @@ export default function Connections(props) {
 
 
     useEffect(() => {
-        var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
-        console.log(321)
+        var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits').limit(25)
         nonprofits.get().then(snapshot => {
             var phoneNumber = faker.phone.phoneNumberFormat(0)
             var email = faker.internet.email()
@@ -27,7 +26,6 @@ export default function Connections(props) {
             var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
             date = date.split(", ")
             date = faker.date.past().toDateString()
-            console.log(faker)
             setNonProfits(snapshot.docs.map(doc => ({ id: doc.id, time, date, email, phoneNumber, ...doc.data() })))
         })
         // getPhotoUrl().then(url => {
@@ -67,11 +65,12 @@ function ConnectPanel(props) {
     }
 
     let history = useHistory()
-
+    const pic = faker.image.image()
+    //'https://picsum.photos/200/200'
     return (
         <div className="nonProfitPanel card-item dashboard-card">
 
-            <img className="nonProfitPhoto" src={props.photo} alt="profile pic" />
+            <img className="nonProfitPhoto" src={pic} alt="profile pic" />
             <div className="nonProfitInfo">
                 <p className='title'>{props.name}</p>
                 <p className='number'>{props.phoneNumber}</p>
