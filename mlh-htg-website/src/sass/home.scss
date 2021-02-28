@@ -94,3 +94,18 @@
     width: 40px;
     height: 40px;
 }
+
+.trashfront {
+    position: absolute;
+    z-index: 3;
+    left: calcvw(1323.95);
+    top: calcvw(382.56);
+    width: calcvw(293.42);
+}
+.trashback {
+    position: absolute;
+    z-index: 2;
+    left: calcvw(1331.61);
+    top: calcvw(315.25);
+    width: calcvw(292.5);
+}

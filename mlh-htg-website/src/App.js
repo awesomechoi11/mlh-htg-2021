@@ -98,12 +98,12 @@ const routes = [
     component: <Search />,
     navbar: true
   },
-  {
-    to: '/about',
-    children: <div className='about'>ABOUT US</div>,
-    component: <About />,
-    navbar: true
-  },
+  // {
+  //   to: '/about',
+  //   children: <div className='about'>ABOUT US</div>,
+  //   component: <About />,
+  //   navbar: true
+  // },
   {
     to: '/',
     children: (
