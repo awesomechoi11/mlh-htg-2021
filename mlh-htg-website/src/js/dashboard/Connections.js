@@ -13,6 +13,7 @@ import { add, trash, calender } from '../../assets/svgs/svg'
 
 export default function Connections(props) {
     const [nonProfits, setNonProfits] = useState()
+    let history = useHistory()
 
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits').limit(25)
@@ -36,7 +37,11 @@ export default function Connections(props) {
             {!props.owo &&
                 <p id="nonProfitConnectionTitle">
                     <span>NON-PROFIT ORGANIZATION CONNECTIONS</span>
-                    <span>VIEW ALL</span>
+                    <span
+                        onClick={e => {
+                            history.push('/dashboard/connections')
+                        }}
+                    >VIEW ALL</span>
                 </p>
             }
             {props.owo && <ConnectionsBanner />}

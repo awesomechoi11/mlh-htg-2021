@@ -29,11 +29,11 @@ export async function getUserfromRef(userRef) {
 }
 
 export function getUserfromUid(uid) {
-    return db.doc('users/' + uid).get()
+    return firestore.doc('hackathonstuff/mlhhtg2021/users/' + uid).get()
 }
 
 export function createNewUser(userdata) {
-    const userRef = db.collection('users').doc(userdata.uid)
+    const userRef = firestore.collection('hackathonstuff/mlhhtg2021/users').doc(userdata.uid)
     console.log('creating user with: ', userdata)
 
     return userRef.set(newUserDefaults(userdata))

@@ -379,9 +379,9 @@ export default function Login() {
             if (mode === 'signin') {
 
                 loginPlatformLeft = <LoginForm></LoginForm>
-            }else if(mode == 'signup'){
+            } else if (mode == 'signup') {
                 loginPlatformLeft = <RegisterForm></RegisterForm>
-            } else {    
+            } else {
                 loginPlatformLeft = (
                     <div className='login-form-title dutch-white'>
                         uh oh! pls refresh
@@ -391,9 +391,9 @@ export default function Login() {
         }
     }
     if (!platform) {
-        var registerWidth = mode == 'signup' ? {width: '1000px'} : null
+        var registerWidth = mode == 'signup' ? { width: '1000px' } : null
         platform = (
-            <div id='login-platform' style = {registerWidth}>
+            <div id='login-platform' style={registerWidth}>
 
                 <div className='login-platform-left'>
                     {loginPlatformLeft}
@@ -412,13 +412,13 @@ export default function Login() {
         <div className="login app-page" >
             {platform}
             {mode === 'signup' &&
-            <div className = "setUpHeader">
-                <div id = 'logo'>{leafonly}</div>
-                <div id = "setUpWrapper">
-                    <p id = "setUp1">Organization Account Setup</p>
-                    <p id = "setUp2">Set up an account for your organization</p>
+                <div className="setUpHeader">
+                    <div id='logo'>{leafonly}</div>
+                    <div id="setUpWrapper">
+                        <p id="setUp1">Organization Account Setup</p>
+                        <p id="setUp2">Set up an account for your organization</p>
+                    </div>
                 </div>
-            </div>
             }
         </div>
     )
@@ -507,14 +507,14 @@ function LoginForm() {
                 }}
             >
 
-            {mode === 'signin' && <><span>DONT HAVE AN ACCOUNT? SIGN UP </span><span className='dutch-white'>HERE</span></>}
+                {mode === 'signin' && <><span>DONT HAVE AN ACCOUNT? SIGN UP </span><span className='dutch-white'>HERE</span></>}
             </div>
 
         </>
     )
 }
 
-function RegisterForm(){
+function RegisterForm() {
     const [mode, setMode] = useRecoilState(currentModeAtom)
     const setUserLoginValues = useSetRecoilState(userLoginValuesAtom)
 
@@ -556,7 +556,7 @@ function RegisterForm(){
     )
     return (
         <>
-            <form id= 'register-form' onSubmit={e => {
+            <form id='register-form' onSubmit={e => {
                 e.preventDefault()
             }}>
                 <div>
@@ -585,7 +585,7 @@ function RegisterForm(){
                     {altsignin}
                 </div>
             </form>
-            <div id = "signInRouteWrapper">
+            <div id="signInRouteWrapper">
                 <span>ALREADY HAVE AN ACCOUNT? </span>
                 <div className='here-button'
                     onClick={e => {
@@ -598,7 +598,7 @@ function RegisterForm(){
                     }}
                 >
 
-                <span className='dutch-white' style = {{textDecoration: 'underline'}}> SIGN IN HERE</span>
+                    <span className='dutch-white' style={{ textDecoration: 'underline' }}> SIGN IN HERE</span>
                 </div>
             </div>
 
