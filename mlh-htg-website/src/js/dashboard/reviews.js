@@ -77,7 +77,7 @@ export function RightReviews() {
 
                         </div>  
                     </div>
-                    : 'not available'}
+                    : 'please select a review!'}
             </div>
         </div>
     )

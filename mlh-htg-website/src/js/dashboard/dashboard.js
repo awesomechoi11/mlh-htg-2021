@@ -65,7 +65,7 @@ const routes = [
     {
         to: '/dashboard/reviews',
         component: <DashboardReviews />,
-        right: <div>empty state</div>
+        right: <RightReviews />
     },
     {
         to: '/dashboard',
