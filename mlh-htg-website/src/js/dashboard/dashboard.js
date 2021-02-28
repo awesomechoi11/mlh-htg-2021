@@ -1,6 +1,6 @@
 import {
     Switch,
-    Route,
+    Route
 } from "react-router-dom";
 import '../../sass/dashboard.scss'
 
@@ -12,6 +12,8 @@ import { HomeRight, DashboardHome } from './dashboardHome'
 import { Sidebar } from './dashboardSidebar'
 import OrgProfile from './OrgProfile';
 
+
+import { DashboardReviews, RightReviews } from './reviews'
 
 export default function Dashboard() {
 
@@ -56,12 +58,20 @@ const routes = [
         right: 'empty state for connections'
     },
     {
+        to: '/dashboard/reviews/:reviewID',
+        component: <DashboardReviews />,
+        right: <RightReviews />
+    },
+    {
+        to: '/dashboard/reviews',
+        component: <DashboardReviews />,
+        right: <div>empty state</div>
+    },
+    {
         to: '/dashboard',
         component: <DashboardHome />,
         right: <HomeRight/>
     },
 ]
-
-
 
 

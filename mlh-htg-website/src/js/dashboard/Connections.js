@@ -12,6 +12,8 @@ import {
 export default function Connections(props) {
     const [nonProfits, setNonProfits] = useState()
 
+
+
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits').limit(25)
         nonprofits.get().then(snapshot => {
@@ -104,7 +106,7 @@ export function ConnectionRight() {
         //console.log(data.data())
         setDocData(JSON.stringify(data.data()))
     }).catch(e => {
-        setDocData(e)
+        setDocData('not found!')
         console.log('connectionright ', e)
     })
 

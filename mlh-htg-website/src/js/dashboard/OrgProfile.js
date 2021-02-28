@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams
 } from "react-router-dom";
 
 import { useEffect, useState } from 'react'
@@ -62,18 +62,21 @@ export default function OrgProfile(){
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
         nonprofits.doc(id).get().then(doc => {
-            setData(doc.data())
-            Geocode.fromAddress(doc.data().address).then(
-                (response) => {
-                  const { lat, lng } = response.results[0].geometry.location;
-                  //console.log(lat, lng);
-                  setCenter({lat, lng})
-                  setZoom(15)
-                },
-                (error) => {
-                  console.error(error);
-                }
-            )
+            if (doc.exists) {
+
+                setData(doc.data())
+                Geocode.fromAddress(doc.data().address).then(
+                    (response) => {
+                        const { lat, lng } = response.results[0].geometry.location;
+                        //console.log(lat, lng);
+                        setCenter({ lat, lng })
+                        setZoom(15)
+                    },
+                    (error) => {
+                        console.error(error);
+                    }
+                )
+            }
         })
         var phoneNumber = faker.phone.phoneNumberFormat(0)
         var email = faker.internet.email()
@@ -85,7 +88,7 @@ export default function OrgProfile(){
         setFakeData({phoneNumber, email, time, date})
     }, [])
 
-    return(
+    return (
         <div>
             <button onClick = {addToSchedule}>Schedule</button>
             {data && 
@@ -98,7 +101,7 @@ export default function OrgProfile(){
                     <p>{fakeData.date}</p>
                 </div>
             }
-            {isLoaded ? 
+            {isLoaded ?
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
