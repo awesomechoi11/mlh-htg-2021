@@ -55,7 +55,7 @@ const routes = [
     {
         to: '/dashboard/connections',
         component: <Connections owo={true} />,
-        right: 'empty state for connections'
+        right: <ConnectionRight/>
     },
     {
         to: '/dashboard/reviews/:reviewID',

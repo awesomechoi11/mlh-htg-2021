@@ -76,3 +76,8 @@ export const scheduleAtom = atom({
     key: 'scheduleAtom',
     default: []
 })
+
+export const orgInfoAtom = atom({
+    key: 'orgInfoAtom',
+    default: null
+})

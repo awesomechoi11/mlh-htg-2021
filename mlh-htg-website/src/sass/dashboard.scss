@@ -457,3 +457,197 @@ $right-width: 540px;
 .connections-inner {
     height: 100% !important;
 }
+
+
+.connectRight{
+    .status-pill {
+        padding: 6px 13px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: bold;
+        color: $offwhite;
+        cursor: pointer;
+        text-align: center;
+        &.pickup {
+            background-color: $darkgreen;
+            width: 130.7px;
+        }
+        &.cancel {
+            background-color: $lightmaroon;
+            width: 215px;
+            margin-bottom: 3%;
+        }
+        &.accepting {
+            display: inline-table;
+            background: $darkgreen;
+            position: absolute;
+            right: 6%;
+            top: 4%;
+        }
+        &.closed {
+            display: inline-table;
+            background: $lightmaroon;
+            position: absolute;
+            right: 10%;
+            top: 4%;
+        }
+    }
+
+    p{
+        color: $maroon;
+        font-size: 18px;
+        margin: 0;
+    }
+    #details{
+        font-size: 24px;
+        font-weight: bold;
+        padding-bottom: 5%;
+    }
+
+    #titleAndStatus{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 5%;
+    }
+    #title{
+        font-weight: bold;
+        font-size: 24px;
+        width: 68%;
+    }
+
+    #connectAddress{
+        width: 90%;
+    }
+
+    #connectInfo {
+        position: relative;
+    }
+    #wrapper{
+        position: relative;
+        left: 7%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    #hoursWrapper{
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+    #hoursTitle{
+        font-weight: bold;
+    }
+    #available{
+        font-weight: bold;
+    }
+    #searchAndCalender{
+        position: relative;
+    }
+    #searchInput{
+        background-color: var(--offwhite);
+        border: 2px solid var(--maroon);
+        border-radius: 11px;
+        outline: none;
+        width: 220px;
+        height: 20px;
+        padding-left: 17px;
+        padding-top: 4px;
+    }
+    #calender{
+        position: absolute;
+        top: 13.5%;
+        left: 50%;
+        cursor: pointer;
+    }
+    ::-webkit-input-placeholder { 
+        color: $maroon;
+        font-size: 18px;
+      }
+    #btnWrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 4%;
+    }
+
+    #connectInfo-inner {
+        width: 418px;
+        min-height: 330px;
+        border: 2px solid $darkgreen;
+        border-radius: 11px;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        padding-left: 4%;
+    }
+
+    #connectbackgroundOffset {
+        width: 434.25px;
+        height: 100%;
+        border: none;
+        border-radius: 11px;
+        background-color: $offwhite;
+        top: 7px;
+        left: 7px;
+        position: absolute;
+    }
+
+    #todoInfo{
+        position: relative;
+    }
+
+    #todoAndIcons{
+        padding-top: 10%;
+        padding-bottom: 6%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #icons{
+        display: flex;
+        gap: 20px;
+    }
+
+    #todoListTitle{
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .circleAndTodo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        left: 7%;
+        padding-top: 5%;
+        gap: 5px;
+    }
+
+    #todoInfo-inner {
+        width: 434.25px;
+        height: 182.66px;
+        border: 2px solid $darkgreen;
+        border-radius: 11px;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        padding-top: 4%;
+    }
+
+    #todobackgroundOffset {
+        width: 434.25px;
+        height: 201.66px;;
+        border: none;
+        border-radius: 11px;
+        background-color: $offwhite;
+        top: 7px;
+        left: 7px;
+        position: absolute;
+    }
+}
+
+
