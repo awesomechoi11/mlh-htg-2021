@@ -3,52 +3,75 @@ import {
 } from '../../assets/svgs/svg'
 import restaurantLogo from '../../assets/logos/restaurantLogo.png'
 import { homeavatar } from '../../assets/svgs/svg'
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"
 import Connections from '../dashboard/Connections'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { scheduleAtom, userUIDFromFirebaseAtom } from '../../utils/atoms'
+import { useEffect } from 'react'
+import { getSchedule } from '../../utils/firebaseFunctions'
 
+export function HomeRight() {
+    const [schedules, setSchedule] = useRecoilState(scheduleAtom)
+    const uid = useRecoilValue(userUIDFromFirebaseAtom)
 
+    useEffect(() => {
+        if(uid){
+            //get all schedules from firebase
+            var queriedSchedule = getSchedule(uid)
+            if(queriedSchedule){
+                setSchedule(queriedSchedule)
+            }
+        }
+    }, [])
 
-export const homeRight = (
-    <div className='right-home'>
-        <p id="myProfile">my profile</p>
+    return(
+        <div className='right-home'>
+            <p id="myProfile">my profile</p>
 
-        <div id="userInfo">
-            <div className='userInfo-inner'>
+            <div id="userInfo">
+                <div className='userInfo-inner'>
 
-                <p id="header">Restaurant Name</p>
-                <div id="picAndAddress">
-                    <img id="headerPic" src={restaurantLogo} alt="pic" />
-                    <div id="address">
-                        <p>FOODFORTHOUGHT INC.</p>
-                        <p>12345 SESAME ST</p>
-                        <p>ORLANDO FL 12345</p>
+                    <p id="header">Restaurant Name</p>
+                    <div id="picAndAddress">
+                        <img id="headerPic" src={restaurantLogo} alt="pic" />
+                        <div id="address">
+                            <p>FOODFORTHOUGHT INC.</p>
+                            <p>12345 SESAME ST</p>
+                            <p>ORLANDO FL 12345</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="backgroundOffset">
-            </div>
-        </div>
-        <div id="pickUpAndSort">
-            <p id="pickUpHeader">scheduled pickups</p>
-            <div id="sortAndArrow">
-                <p id="sortHeader">SORT BY</p>
-                {downArrow}
-            </div>
-        </div>
-        <div id="scheduledPickups">
-            <div className='scheduledPickups-inner'>
-                <div className="scheduleList">
-                    <div className="circleAndScheduleTime">
-                        <div className="circle"></div>
-                        <p className="scheduleTime">ORGANIZATION A - 9:30AM</p>
-                    </div>
+                <div id="backgroundOffset">
                 </div>
             </div>
-            <div id="pickupsBackgroundOffset">
+            <div id="pickUpAndSort">
+                <p id="pickUpHeader">scheduled pickups</p>
+                <div id="sortAndArrow">
+                    <p id="sortHeader">SORT BY</p>
+                    {downArrow}
+                </div>
+            </div>
+            <div id="scheduledPickups">
+                <div className='scheduledPickups-inner'>
+                    <div className="scheduleList">
+                        {schedules && schedules.map(schedule => <PickUps key = {schedule.name} {...schedule}/>)}
+                    </div>
+                </div>
+                <div id="pickupsBackgroundOffset">
+                </div>
             </div>
         </div>
-    </div>
-)
+    )
+}
+
+function PickUps(props){
+    return(
+        <div className = "circleAndScheduleTime">
+            <div className="circle"></div>
+            <p>{props.name}  &mdash;  {props.time}</p>
+        </div>
+    )
+}
 
 export function DashboardHome() {
 

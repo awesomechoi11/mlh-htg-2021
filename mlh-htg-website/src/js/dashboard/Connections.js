@@ -4,15 +4,13 @@ import { getPhotoUrl } from '../../utils/utils'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import faker from 'faker'
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import {
+    scheduleAtom
+} from '../../utils/atoms'
 
 export default function Connections(props) {
     const [nonProfits, setNonProfits] = useState()
-    const [photo, setPhoto] = useState()
-    const [schedules, setSchedules] = useState([])
-
-    function schedule(newSchedule) {
-        setSchedules(schedules => [...schedules, newSchedule])
-    }
 
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits').limit(25)
@@ -39,36 +37,39 @@ export default function Connections(props) {
             </p>
             <PerfectScrollbar>
                 <div id="connectPanelWrapper">
-                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.webURL} {...org} schedule={schedule} showProfile={props.showProfile} />)}
+                    {nonProfits && nonProfits.map(org => <ConnectPanel key={org.id} {...org} showProfile={props.showProfile} />)}
                 </div>
             </PerfectScrollbar>
         </div>
-
     )
 }
 
 function ConnectPanel(props) {
-    const [scheduled, setScheduled] = useState(false)
-
+    const schedules = useRecoilValue(scheduleAtom)
     const status = [
-        'in progress',
         'accepting',
-        'closed'
+        'closed',
+        'in progress'
     ]
-    const currstatus = status[Math.floor(Math.random() * Math.floor(3))]
-
-    function schedule() {
-        props.schedule({ name: props.name, time: props.time, date: props.date, address: props.address })
-        setScheduled(true)
-    }
-
+    const [currstatus, setCurrStatus] = useState(status[Math.floor(Math.random() * Math.floor(2))])
+    
     let history = useHistory()
     const pic = faker.image.image()
     //'https://picsum.photos/200/200'
+
+    useEffect(() => {
+        for(var i = 0; i < schedules.length; i++){
+            if(schedules[i].name == props.name){
+                setCurrStatus(status[2])
+                break;
+            }
+        }
+    }, [])
+
     return (
         <div className="nonProfitPanel card-item dashboard-card">
 
-            <img className="nonProfitPhoto" src={pic} alt="profile pic" />
+            <img className="nonProfitPhoto" src={'https://picsum.photos/200/200'} alt="profile pic" />
             <div className="nonProfitInfo">
                 <p className='title'>{props.name}</p>
                 <p className='number'>{props.phoneNumber}</p>

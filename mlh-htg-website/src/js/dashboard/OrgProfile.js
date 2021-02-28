@@ -12,28 +12,36 @@ import { firestore } from '../../utils/firebase'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import Geocode from "react-geocode"
 import faker from 'faker'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { scheduleAtom, userUIDFromFirebaseAtom } from '../../utils/atoms'
+import { addSchedule } from '../../utils/firebaseFunctions'
 
 const containerStyle = {
     width: '400px',
     height: '400px'
 }
 
-export default function OrgProfile(props){
-    let { id } = useParams()
+export default function OrgProfile(){
+    const [scheduled, setSchedule] = useRecoilState(scheduleAtom)
+    const uid = useRecoilValue(userUIDFromFirebaseAtom)
     const [data, setData] = useState()
     const [center, setCenter] = useState()
     const [zoom, setZoom] = useState(13)
+    const [fakeData, setFakeData] = useState()
 
-    var phoneNumber = faker.phone.phoneNumberFormat(0)
-    var email = faker.internet.email()
-    var time = faker.date.between('2021-02-29', '2021-03-20').toLocaleString(navigator.language, { hour: '2-digit', minute: '2-digit' })
-        .replace(/(:\d{2})$/, "")
-    var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
-    date = date.split(", ")
-    date = date[0]
+    function addToSchedule(){
+        data.time = fakeData.time
+        data.date = fakeData.date
+        setSchedule([...scheduled, data])
+        //adds schedule to firestore
+        if(uid){
+            addSchedule(uid, data)
+        }
+    }
     
     Geocode.setApiKey("AIzaSyCumPp-MUvheo1S7ixUDqVoz-13ypCnjE4")
 
+    let { id } = useParams()
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyCumPp-MUvheo1S7ixUDqVoz-13ypCnjE4"
@@ -67,18 +75,27 @@ export default function OrgProfile(props){
                 }
             )
         })
+        var phoneNumber = faker.phone.phoneNumberFormat(0)
+        var email = faker.internet.email()
+        var time = faker.date.between('2021-02-29', '2021-03-20').toLocaleString(navigator.language, { hour: '2-digit', minute: '2-digit' })
+            .replace(/(:\d{2})$/, "")
+        var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
+        date = date.split(", ")
+        date = date[0]
+        setFakeData({phoneNumber, email, time, date})
     }, [])
 
     return(
         <div>
+            <button onClick = {addToSchedule}>Schedule</button>
             {data && 
                 <div>
                     <p>{data.name}</p>
                     <p>{data.address}</p>
-                    <p>{phoneNumber}</p>
-                    <p>{email}</p>
-                    <p>{time}</p>
-                    <p>{date}</p>
+                    <p>{fakeData.phoneNumber}</p>
+                    <p>{fakeData.email}</p>
+                    <p>{fakeData.time}</p>
+                    <p>{fakeData.date}</p>
                 </div>
             }
             {isLoaded ? 
@@ -92,7 +109,6 @@ export default function OrgProfile(props){
                 <Marker position={center} />
             <></>
             </GoogleMap> : <></>}
-            <div onClick = {props.schedule}></div>
         </div>
     )
 }
