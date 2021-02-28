@@ -54,7 +54,7 @@ const routes = [
     },
     {
         to: '/dashboard/connections',
-        component: <Connections />,
+        component: <Connections owo={true} />,
         right: 'empty state for connections'
     },
     {
@@ -70,7 +70,7 @@ const routes = [
     {
         to: '/dashboard',
         component: <DashboardHome />,
-        right: <HomeRight/>
+        right: <HomeRight />
     },
 ]
 

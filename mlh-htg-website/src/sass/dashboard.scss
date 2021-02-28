@@ -283,6 +283,9 @@ $right-width: 540px;
             background: $lightmaroon;
         }
     }
+    .phonenumber {
+        margin-top: 50px;
+    }
     .view-btn {
         cursor: pointer;
         margin: 37px -19px 0 0;
@@ -445,4 +448,12 @@ $right-width: 540px;
     font-size: 27px;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #51251d;
+}
+
+.connections-banner {
+    width: 100%;
+    margin-bottom: 36px;
+}
+.connections-inner {
+    height: 100% !important;
 }
