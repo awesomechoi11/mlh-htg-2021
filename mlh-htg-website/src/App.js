@@ -15,6 +15,8 @@ import Home from './js/home/home'
 import About from './js/about/about'
 import Login from './js/login/login'
 
+import { leafandtext } from './assets/svgs/svg'
+
 function App() {
 
   return (
@@ -70,29 +72,29 @@ function NavBar() {
 const routes = [
   {
     to: '/login',
-    children: <div className='nav-login'>LOGIN</div>,
+    children: <div className='login'>LOGIN</div>,
     component: <Login />,
     navbar: true
   },
   {
     to: '/dashboard',
-    children: <div className='nav-account'>ACCOUNT</div>,
+    children: <div className='account'>ACCOUNT</div>,
     component: <Dashboard />,
     navbar: false
   }, {
     to: '/search',
-    children: <div className='nav-search'>SEARCH</div>,
+    children: <div className='search'>SEARCH</div>,
     component: <Search />,
     navbar: true
   }, {
     to: '/about',
-    children: <div className='nav-about'>ABOUT US</div>,
+    children: <div className='about'>ABOUT US</div>,
     component: <About />,
     navbar: true
   }, {
     to: '/',
     children: (
-      <div className='nav-about'>HOME</div>
+      <div className='home'>{leafandtext}</div>
     ),
     component: <Home />,
     navbar: true

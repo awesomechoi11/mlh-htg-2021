@@ -36,14 +36,43 @@ body,
   margin: 0;
   overflow: hidden;
   font-family: Quattrocento Sans;
+  background: $offwhite;
 }
 
 .nav-bar {
   position: absolute;
-  top: 0;
-  width: 320px;
-  height: 100%;
-  background-color: #c4c4c4;
+  //top: 0;
+  //width: 320px;
+  //height: 100%;
+  //background-color: #c4c4c4;
+  .nav-item {
+    > * {
+      position: absolute;
+      top: calcvw(64);
+
+      font-size: calcvw(24);
+      cursor: pointer;
+      display: flex;
+      color: $maroon;
+      font-weight: bold;
+    }
+
+    .login {
+      left: calcvw(1736.06);
+    }
+    .search {
+      left: calcvw(1572.63);
+    }
+    .about {
+      width: calcvw(125);
+      left: calcvw(1387.28);
+    }
+    .home {
+      width: calcvw(426);
+      top: calcvw(43.22);
+      left: calcvw(82.13);
+    }
+  }
 }
 
 input[type="text"],

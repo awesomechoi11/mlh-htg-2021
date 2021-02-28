@@ -72,7 +72,13 @@ function ConnectPanel(props) {
     }, [])
     //console.log(props)
     return (
-        <div className="nonProfitPanel card-item dashboard-card">
+        <div className="nonProfitPanel card-item dashboard-card"
+            onClick={e => {
+                if (props.owo) {
+                    history.push('/dashboard/connections/' + props.id)
+                }
+            }}
+        >
 
             <img className="nonProfitPhoto" src={'https://picsum.photos/200/200'} alt="profile pic" />
             <div className="nonProfitInfo">
