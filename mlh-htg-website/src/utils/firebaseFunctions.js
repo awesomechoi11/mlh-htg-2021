@@ -44,6 +44,9 @@ export function createNewUser(userdata) {
 }
 
 export function searchOrgbyName(name) {
+    if (!name) {
+        return "Not found"
+    }
     var name = name.toUpperCase()
     var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
 

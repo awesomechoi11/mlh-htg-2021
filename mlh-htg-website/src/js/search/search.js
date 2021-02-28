@@ -1,10 +1,10 @@
 import '../../sass/search.scss';
 import { motion } from "framer-motion"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { searchOrgbyName } from '../../utils/firebaseFunctions'
 import { firestore } from '../../utils/firebase'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-
+import { useForm } from "react-hook-form";
 import OrgProfile from '../dashboard/OrgProfile'
 
 import { searchSetAddressAtom } from '../../utils/atoms'
@@ -12,19 +12,48 @@ import {
     useSetRecoilState,
     useRecoilValue
 } from 'recoil'
+import { toast } from 'react-toastify';
 
 export default function Search() {
 
 
     const [orgData, setOrgData] = useState()
+    const { register, handleSubmit, watch, errors } = useForm();
+    const onSubmit = data => {
+        if (data.searchQuery == '') {
+            setOrgData(ogData.current)
+            return
+        }
+        var resultData = searchOrgbyName(data.searchQuery)
+        resultData.then(newdata => {
 
+            if (data === 'Not found') {
+                toast('Not Found!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setOrgData(ogData.current)
+            } else {
+                console.log(newdata)
+                setOrgData([newdata])
+            }
+        })
+    };
 
+    var ogData = useRef()
 
     useEffect(() => {
         //first load get everything
         const colRef = firestore.collection('hackathonstuff/mlhhtg2021/nonprofits').limit(25)
         colRef.get().then(snapshot => {
             setOrgData(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+            ogData.current = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+            console.log(ogData)
         })
     }, [])
 
@@ -55,7 +84,10 @@ export default function Search() {
                                 search by organization, time, or day
                             </div>
                             <div className='input-wrapper'>
+                                <form onSubmit={handleSubmit(onSubmit)}>
 
+                                    <input name='searchQuery' type='text' ref={register} />
+                                </form>
                             </div>
                             <div className='search-btn'>
                                 SEARCH
