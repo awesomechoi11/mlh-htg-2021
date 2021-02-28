@@ -63,7 +63,7 @@ export function DashboardHome() {
     )
 }
 
-function DashboardSearch() {
+export function DashboardSearch() {
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => console.log(data);
     return (
