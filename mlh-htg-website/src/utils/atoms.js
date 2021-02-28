@@ -71,3 +71,8 @@ export const userCreateEventValuesAtom = atom({
         photoURL: "",
     }
 })
+
+export const scheduleAtom = atom({
+    key: 'scheduleAtom',
+    default: []
+})

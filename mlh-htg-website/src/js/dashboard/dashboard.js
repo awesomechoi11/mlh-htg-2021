@@ -8,7 +8,7 @@ import ProfileHeader from './ProfileHeader'
 import FoodForThought from './FoodForThought'
 
 import Connections, { ConnectionRight } from '../dashboard/Connections'
-import { homeRight, DashboardHome } from './dashboardHome'
+import { HomeRight, DashboardHome } from './dashboardHome'
 import { Sidebar } from './dashboardSidebar'
 import OrgProfile from './OrgProfile';
 
@@ -70,7 +70,7 @@ const routes = [
     {
         to: '/dashboard',
         component: <DashboardHome />,
-        right: homeRight
+        right: <HomeRight/>
     },
 ]
 

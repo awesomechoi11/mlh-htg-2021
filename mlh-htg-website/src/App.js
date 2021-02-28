@@ -15,8 +15,6 @@ import Home from './js/home/home'
 import About from './js/about/about'
 import Login from './js/login/login'
 
-
-
 function App() {
 
   return (
