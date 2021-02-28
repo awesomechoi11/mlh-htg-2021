@@ -14,8 +14,11 @@ export default function Connections(props) {
         setSchedules(schedules => [...schedules, newSchedule])
     }
 
+
+
     useEffect(() => {
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
+        console.log(321)
         nonprofits.get().then(snapshot => {
             var phoneNumber = faker.phone.phoneNumberFormat(0)
             var email = faker.internet.email()
@@ -103,7 +106,7 @@ export function ConnectionRight() {
         //console.log(data.data())
         setDocData(JSON.stringify(data.data()))
     }).catch(e => {
-        setDocData(e)
+        setDocData('not found!')
         console.log('connectionright ', e)
     })
 
