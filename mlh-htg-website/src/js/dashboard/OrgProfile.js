@@ -55,7 +55,6 @@ export default function OrgProfile(props){
         var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
         nonprofits.doc(id).get().then(doc => {
             setData(doc.data())
-            console.log(doc.data().address)
             Geocode.fromAddress(doc.data().address).then(
                 (response) => {
                   const { lat, lng } = response.results[0].geometry.location;
@@ -70,7 +69,6 @@ export default function OrgProfile(props){
         })
     }, [])
 
-    //lat: 38.575764, lng: -121.478851
     return(
         <div>
             {data && 
