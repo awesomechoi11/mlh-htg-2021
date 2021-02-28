@@ -13,15 +13,15 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import Geocode from "react-geocode"
 import faker from 'faker'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { scheduleAtom, userUIDFromFirebaseAtom, orgInfoAtom } from '../../utils/atoms'
+import { scheduleAtom, userUIDFromFirebaseAtom, orgInfoAtom, searchSetAddressAtom } from '../../utils/atoms'
 import { addSchedule } from '../../utils/firebaseFunctions'
 
 const containerStyle = {
-    width: '400px',
-    height: '400px'
+    width: '541.72px',
+    height: '709px'
 }
 
-export default function OrgProfile(){
+export default function OrgProfile(props) {
     const [scheduled, setSchedule] = useRecoilState(scheduleAtom)
     const [orgAtom, setOrgAtom] = useRecoilState(orgInfoAtom)
     const uid = useRecoilValue(userUIDFromFirebaseAtom)
@@ -30,7 +30,9 @@ export default function OrgProfile(){
     const [zoom, setZoom] = useState(13)
     const [fakeData, setFakeData] = useState()
 
-    function addToSchedule(){
+    const address = useRecoilValue(searchSetAddressAtom)
+
+    function addToSchedule() {
         data.time = fakeData.time
         data.date = fakeData.date
 
@@ -40,11 +42,11 @@ export default function OrgProfile(){
         obj.status = "in progress"
         setOrgAtom(obj)
         //adds schedule to firestore
-        if(uid){
+        if (uid) {
             addSchedule(uid, data)
         }
     }
-    
+
     Geocode.setApiKey("AIzaSyCumPp-MUvheo1S7ixUDqVoz-13ypCnjE4")
 
     let { id } = useParams()
@@ -65,39 +67,54 @@ export default function OrgProfile(){
         setMap(null)
     }, [])
 
-    useEffect(() => {
-        var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
-        nonprofits.doc(id).get().then(doc => {
-            if (doc.exists) {
 
-                setData(doc.data())
-                Geocode.fromAddress(doc.data().address).then(
-                    (response) => {
-                        const { lat, lng } = response.results[0].geometry.location;
-                        //console.log(lat, lng);
-                        setCenter({ lat, lng })
-                        setZoom(15)
-                    },
-                    (error) => {
-                        console.error(error);
-                    }
-                )
+    useEffect(() => {
+        Geocode.fromAddress(address).then(
+            (response) => {
+                const { lat, lng } = response.results[0].geometry.location;
+                //console.log(lat, lng);
+                setCenter({ lat, lng })
+                setZoom(15)
+            },
+            (error) => {
+                console.error(error);
             }
-        })
-        var phoneNumber = faker.phone.phoneNumberFormat(0)
-        var email = faker.internet.email()
-        var time = faker.date.between('2021-02-29', '2021-03-20').toLocaleString(navigator.language, { hour: '2-digit', minute: '2-digit' })
-            .replace(/(:\d{2})$/, "")
-        var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
-        date = date.split(", ")
-        date = date[0]
-        setFakeData({phoneNumber, email, time, date})
-    }, [])
+        )
+    }, [address])
+
+    // useEffect(() => {
+    //     var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
+    //     nonprofits.doc(id).get().then(doc => {
+    //         if (doc.exists) {
+
+    //             setData(doc.data())
+    //             Geocode.fromAddress(doc.data().address).then(
+    //                 (response) => {
+    //                     const { lat, lng } = response.results[0].geometry.location;
+    //                     //console.log(lat, lng);
+    //                     setCenter({ lat, lng })
+    //                     setZoom(15)
+    //                 },
+    //                 (error) => {
+    //                     console.error(error);
+    //                 }
+    //             )
+    //         }
+    //     })
+    //     var phoneNumber = faker.phone.phoneNumberFormat(0)
+    //     var email = faker.internet.email()
+    //     var time = faker.date.between('2021-02-29', '2021-03-20').toLocaleString(navigator.language, { hour: '2-digit', minute: '2-digit' })
+    //         .replace(/(:\d{2})$/, "")
+    //     var date = faker.date.between('2021-02-29', '2021-03-20').toLocaleString()
+    //     date = date.split(", ")
+    //     date = date[0]
+    //     setFakeData({ phoneNumber, email, time, date })
+    // }, [])
 
     return (
         <div>
-            <button onClick = {addToSchedule}>Schedule</button>
-            {data && 
+            {/* <button onClick = {addToSchedule}>Schedule</button> */}
+            {data &&
                 <div>
                     <p>{data.name}</p>
                     <p>{data.address}</p>
@@ -115,9 +132,9 @@ export default function OrgProfile(){
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                 >
-                <Marker position={center} />
-            <></>
-            </GoogleMap> : <></>}
+                    <Marker position={center} />
+                    <></>
+                </GoogleMap> : <></>}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import '../../sass/home.scss';
 
 import { girlandfloor, stats1, stats2, stats3, leafonly } from '../../assets/svgs/svg'
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { useHistory } from 'react-router-dom';
 
 export default function Home() {

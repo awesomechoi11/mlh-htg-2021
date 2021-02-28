@@ -81,3 +81,9 @@ export const orgInfoAtom = atom({
     key: 'orgInfoAtom',
     default: null
 })
+
+
+export const searchSetAddressAtom = atom({
+    key: 'searchSetAddressAtom',
+    default: '22330 meyler st. #40'
+})

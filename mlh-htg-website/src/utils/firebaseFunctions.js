@@ -43,28 +43,28 @@ export function createNewUser(userdata) {
         })
 }
 
-export function searchOrgbyName(name){
+export function searchOrgbyName(name) {
     var name = name.toUpperCase()
     var nonprofits = firestore.collection('hackathonstuff').doc("mlhhtg2021").collection('nonprofits')
 
-    nonprofits.where('name', '==', name).get().then(query => {
-        if(!query.empty){
+    return nonprofits.where('name', '==', name).get().then(query => {
+        if (!query.empty) {
             return query.docs[0].data()
-        }else{
+        } else {
             return "Not found"
         }
     })
 }
 
-export function getSchedule(uid){
+export function getSchedule(uid) {
     db.collection('users').doc(uid).collection('schedule').get().then(snapshot => {
-        if(!snapshot.empty){
+        if (!snapshot.empty) {
             return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
         }
         return false
     })
 }
 
-export function addSchedule(uid, data){
+export function addSchedule(uid, data) {
     db.collection('users').doc(uid).collection('schedule').add(data)
 }

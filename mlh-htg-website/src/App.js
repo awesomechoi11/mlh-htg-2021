@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   useHistory,
 } from "react-router-dom";
 
@@ -21,12 +20,11 @@ import { AnimatePresence } from "framer-motion"
 
 
 function App() {
-
   return (
     <Router>
       <AnimatePresence>
 
-        <Switch>
+        <Switch >
 
           {routes.map((item, index) => (
             <Route key={index} path={item.to} >
